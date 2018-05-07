@@ -11,7 +11,7 @@ const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f
 const socket = new SocketIO()
 
 const enhancer = compose(
-	applyMiddleware(ReduxThunk, storeJwt, socketIo(socket)),
+	applyMiddleware(ReduxThunk),
 	devTools
 )
 
