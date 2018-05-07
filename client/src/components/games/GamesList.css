@@ -1,0 +1,22 @@
+h2 {
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  
+  .batch-card {
+    margin: 10px 10px 10px 0px;
+    height:200px;
+    width:300px;
+  }
+  
+  .create-game {
+    margin-top: 10px !important;
+  }
+  
+  .outer-paper {
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px;
+    width: 60%;
+  }
+  

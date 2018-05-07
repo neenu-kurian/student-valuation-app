@@ -21,3 +21,23 @@ export class Student extends BaseEntity {
   @Column('text')
   evaluation:String
 }
+
+
+@Entity()
+export class Batch extends BaseEntity {
+
+  @PrimaryGeneratedColumn()
+  id?: number
+
+  @Column('int')
+  batchid:number
+
+  @Column('text')
+  batchname:String
+
+  @Column('date')
+  startdate:Date
+
+  @Column('date')
+  enddate:Date
+}
