@@ -1,5 +1,6 @@
-import {JsonController, Authorized, Get, Param} from 'routing-controllers'
+import {JsonController, Authorized, Get, Param,Post,HttpCode,CurrentUser,Body} from 'routing-controllers'
 import {Student, Batch} from './entities'
+import User from '../users/entity'
 
 @JsonController()
 export class StudentController {
@@ -11,12 +12,9 @@ export class StudentController {
         batchid
       }})
   }
-
-  //@Authorized()
-  //@Get('/batches/students')
-  //getStudents() {
-  //  return Student.find()
-  //}
+   
+  
+ 
 }
 
 @JsonController()
@@ -26,5 +24,17 @@ export class BatchController {
   @Get('/batches')
   getBatches() {
     return Batch.find()
+  }
+
+  @Authorized()
+  @Post('/batches/newbatch')
+  @HttpCode(201)
+  async createBatch(
+  
+    @Body() batch:Batch
+  ) {
+    const entity = await batch.save()
+    return entity
+    
   }
 }
