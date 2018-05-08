@@ -8,10 +8,7 @@ export class Student extends BaseEntity {
 
   @Column('int')
   batchid:number
-
-  @Column('text')
-  batchname:String
-
+  
   @Column('text')
   studentimage:String
 

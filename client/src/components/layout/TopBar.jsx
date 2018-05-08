@@ -32,7 +32,7 @@ const TopBar = (props) => {
         }
         {
           location.pathname.indexOf('batches/') > 0 &&
-          <Button color="inherit" onClick={() => history.push('/batches')}>All Games</Button>
+          <Button color="inherit" onClick={() => history.push('/batches')}>All Batches</Button>
         }
         {
           /batches$/.test(location.pathname) &&
