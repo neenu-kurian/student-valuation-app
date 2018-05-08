@@ -35,3 +35,19 @@ export const getBatches =()=> (dispatch,getState)  => {
           payload: result.body}))
         .catch(err => console.error(err))
     }
+
+
+  //export const getStudentsByBatch =()=> (dispatch,getState)  => {
+  //  
+  //  const state = getState()
+  //  if (!state.currentUser) return null
+  //   const jwt = state.currentUser.jwt
+  //
+  //   if (isExpired(jwt)) return dispatch(logout())
+  //    request
+  //      .get(`${baseUrl}/batches/students`)
+  //      .set('Authorization', `Bearer ${jwt}`)
+  //      .then(result => dispatch(  {type: UPDATE_STUDENTS,
+  //        payload: result.body}))
+  //      .catch(err => console.error(err))
+  //  }

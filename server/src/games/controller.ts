@@ -11,6 +11,12 @@ export class StudentController {
         batchid
       }})
   }
+
+  //@Authorized()
+  //@Get('/batches/students')
+  //getStudents() {
+  //  return Student.find()
+  //}
 }
 
 @JsonController()
