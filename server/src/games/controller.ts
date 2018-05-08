@@ -1,18 +1,20 @@
-import {JsonController, Authorized, Get} from 'routing-controllers'
-import {Student,Batch} from './entities'
+import {JsonController, Authorized, Get, Param} from 'routing-controllers'
+import {Student, Batch} from './entities'
 
 @JsonController()
-export  class StudentController {
+export class StudentController {
 
   @Authorized()
-  @Get('/batches/students')
-  getStudents() {
-    return Student.find()
+  @Get('/batches/:batchid')
+  getStudents(@Param('batchid')batchid : number) {
+    return Student.find({where: {
+        batchid
+      }})
   }
 }
 
 @JsonController()
-export  class BatchController {
+export class BatchController {
 
   @Authorized()
   @Get('/batches')
@@ -20,4 +22,3 @@ export  class BatchController {
     return Batch.find()
   }
 }
-
