@@ -7,6 +7,8 @@ import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import {getBatches} from '../../actions/games'
 import {getUsers} from '../../actions/users'
+import {Link} from 'react-router-dom'
+import NewBatch from './NewBatch'
 import './GamesList.css'
 
 class GamesList extends PureComponent {
@@ -18,10 +20,13 @@ class GamesList extends PureComponent {
 
   }
 
+ 
+
   renderBatch = (batch) => {
     const {users, history} = this.props
 
     return (
+      
       <Card key={batch.id} className="batch-card">
         <CardContent>
 
@@ -59,12 +64,23 @@ class GamesList extends PureComponent {
       return null
 
     return (
+     
       <Paper className="outer-paper">
-
+   
+      
         <div>
           {batches.map(batch => this.renderBatch(batch))}
         </div>
+        <Link to ="/batches/newbatch" ><Button
+        color="primary"
+        variant="raised"
+        type="submit"
+        className="create-batch"
+      >
+        Add New Batch
+      </Button></Link>
       </Paper>
+     
     )
   }
 }
