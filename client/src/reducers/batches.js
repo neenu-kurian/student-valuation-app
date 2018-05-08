@@ -11,9 +11,9 @@ export default (state = null, {type, payload}) => {
     case UPDATE_BATCHES:
       return payload
 
-    case ADD_BATCH:{
+    case ADD_BATCH:
     
-    return payload}
+    return [...state,payload]
 
     default:
       return state
