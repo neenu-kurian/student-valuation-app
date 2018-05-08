@@ -36,7 +36,14 @@ class GamesList extends PureComponent {
             End Date:{batch.enddate}
           </Typography>
         </CardContent>
-
+        <CardActions>
+        <Button
+          size="small"
+          onClick={() => history.push(`/batches/${batch.id}`)}
+        >
+          VIEW STUDENTS
+        </Button>
+      </CardActions>
       </Card>
     )
   }
