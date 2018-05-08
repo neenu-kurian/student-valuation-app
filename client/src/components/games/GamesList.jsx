@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper'
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import {getBatches} from '../../actions/games'
+import {getUsers} from '../../actions/users'
 import './GamesList.css'
 
 class GamesList extends PureComponent {
@@ -13,10 +14,12 @@ class GamesList extends PureComponent {
 
     if (this.props.batches === null) 
       this.props.getBatches()
+      if (this.props.users === null) this.props.getUsers()
 
   }
 
   renderBatch = (batch) => {
+    const {users, history} = this.props
 
     return (
       <Card key={batch.id} className="batch-card">
@@ -39,9 +42,13 @@ class GamesList extends PureComponent {
   }
 
   render() {
-    const {batches} = this.props
+    const {batches,users,authenticated} = this.props
 
-    if (batches === null) 
+    if (!authenticated) return (
+			<Redirect to="/login" />
+		)
+
+    if (batches === null||users===null) 
       return null
 
     return (
@@ -55,6 +62,11 @@ class GamesList extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({batches: state.batches})
+const mapStateToProps = state => ({
+  authenticated: state.currentUser !== null,
+  users: state.users === null ? null : state.users,
+  batches: state.batches==null?
+  null : Object.values(state.batches).sort((a, b) => b.id - a.id)
+})
 
-export default connect(mapStateToProps, {getBatches})(GamesList)
+export default connect(mapStateToProps, {getBatches,getUsers})(GamesList)
