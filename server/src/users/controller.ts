@@ -19,7 +19,7 @@ export default class UserController {
       type: 'ADD_USER',
       payload: entity
     })
-
+    console.log("test controller")
     return user
   }
 

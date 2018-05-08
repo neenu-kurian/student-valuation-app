@@ -31,7 +31,7 @@ const TopBar = (props) => {
           <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
         }
         {
-          location.pathname.indexOf('games/') > 0 &&
+          location.pathname.indexOf('batches/') > 0 &&
           <Button color="inherit" onClick={() => history.push('/batches')}>All Games</Button>
         }
         {
