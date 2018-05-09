@@ -1,3 +1,8 @@
+.color-red{
+    color:green;
+    width:'100px'
+}
+
 .outer-paper {
     margin-top: 20px;
     margin: auto;
@@ -27,3 +32,17 @@
      height: 20px;
      border-radius: 10px;
   }
+
+  h2 {
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  
+  .batch-card {
+    margin: 10px 10px 10px 0px;
+    height:200px;
+    width:300px;
+  }
+
+  
+  
