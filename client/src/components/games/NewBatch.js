@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import Button from 'material-ui/Button'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
-import {createNewBatch} from '../../actions/games'
+import {createBatch} from '../../actions/games'
 import {Link} from 'react-router-dom'
 
 class NewBatch extends PureComponent {
@@ -16,7 +16,7 @@ class NewBatch extends PureComponent {
 
 	handleSubmit = (e) => {
         //e.preventDefault()
-        this.props.createNewBatch(this.state) 
+        this.props.createBatch(this.state) 
 	}
 
 	handleChange = (event) => {
@@ -73,7 +73,7 @@ class NewBatch extends PureComponent {
                             />
                         </div>
                         <div className="enddate-field">
-                            <label className="label-field">StartDate </label> <br/>
+                            <label className="label-field">EndDate </label> <br/>
                             <input type="text" className="enddate-field" 
                             name="enddate" 
                            // value={this.state.enddate} 
@@ -96,4 +96,4 @@ class NewBatch extends PureComponent {
 }
 
 
-export default connect(null,{createNewBatch})(NewBatch)
+export default connect(null,{createBatch})(NewBatch)
