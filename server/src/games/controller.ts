@@ -13,6 +13,17 @@ export class StudentController {
       }})
   }
    
+  @Authorized()
+  @Post('/batches/newstudent/:batchid')
+  @HttpCode(201)
+  async createStudent(
+  
+    @Body() student:Student
+  ) {
+    const entity = await student.save()
+    return entity
+    
+  }
   
  
 }

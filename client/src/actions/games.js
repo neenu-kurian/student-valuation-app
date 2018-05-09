@@ -5,10 +5,16 @@ import {isExpired} from '../jwt'
 export const UPDATE_BATCHES = 'UPDATE_BATCHES'
 export const UPDATE_STUDENTS='UPDATE_STUDENTS'
 export const ADD_BATCH='ADD_BATCH'
+export const ADD_STUDENT='ADD_STUDENT'
 
 export const createNewBatch = batchstate => ({
   type: ADD_BATCH,
   payload: batchstate
+})
+
+export const createNewStudent = studentstate => ({
+  type: ADD_STUDENT,
+  payload: studentstate
 })
 
 export const getBatches =()=> (dispatch,getState)  => {
@@ -42,18 +48,21 @@ export const getBatches =()=> (dispatch,getState)  => {
     }
 
 
-  export const createBatch =(batchstate)=> (dispatch,getState)  => {
+  export const createStudent =(studentstate,batchid)=> (dispatch,getState)  => {
     
-    const newbatchstate=batchstate
+    const newbatchstate={...studentstate,batchid}
     const state = getState()
+    
     if (!state.currentUser) return null
      const jwt = state.currentUser.jwt
-  
+      
      if (isExpired(jwt)) return dispatch(logout())
       request
-        .post(`${baseUrl}/batches/newbatch`)
+        .post(`${baseUrl}/batches/newstudent/${batchid}`)
         .set('Authorization', `Bearer ${jwt}`)
-        .send(batchstate)
-        .then(result => dispatch(createNewBatch(batchstate)))
+        .send(newbatchstate)
+        .then(result => dispatch(createNewStudent(newbatchstate)))
         .catch(err => console.error(err))
     }
+
+    

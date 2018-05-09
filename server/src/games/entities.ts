@@ -15,8 +15,8 @@ export class Student extends BaseEntity {
   @Column('text')
   studentname:String
 
-  @Column('text')
-  evaluation:String
+  @Column('text',{nullable:true})
+  evaluation?:String
 }
 
 

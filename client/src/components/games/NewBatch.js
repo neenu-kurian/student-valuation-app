@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import Button from 'material-ui/Button'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
-import {createBatch} from '../../actions/games'
+import {createNewBatch} from '../../actions/games'
 import {Link} from 'react-router-dom'
 
 class NewBatch extends PureComponent {
@@ -15,12 +15,12 @@ class NewBatch extends PureComponent {
     
 
 	handleSubmit = (e) => {
-        e.preventDefault()
-        this.props.createBatch(this.state) 
+        //e.preventDefault()
+        this.props.createNewBatch(this.state) 
 	}
 
 	handleChange = (event) => {
-        event.preventDefault()
+        //event.preventDefault()
         const {name, value} = event.target
 
 		this.setState({
@@ -96,4 +96,4 @@ class NewBatch extends PureComponent {
 }
 
 
-export default connect(null,{createBatch})(NewBatch)
+export default connect(null,{createNewBatch})(NewBatch)
