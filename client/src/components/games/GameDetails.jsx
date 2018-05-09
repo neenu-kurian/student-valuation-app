@@ -138,6 +138,7 @@ class GamesDetails extends PureComponent {
         <LinearProgress
           variant="determinate"
           value={redpercentage}
+          color="secondary"
           className={classes.passstyle}/>
         <p>YELLOW:{yellowpercentage}%</p>
         <LinearProgress

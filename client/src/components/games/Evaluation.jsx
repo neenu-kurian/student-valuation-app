@@ -28,7 +28,7 @@ class Evaluation extends PureComponent {
     
     
     return (
-     
+       <div>
         <Card  className="batch-card">
         <CardContent>
 
@@ -51,6 +51,14 @@ class Evaluation extends PureComponent {
         </CardContent>
        
       </Card>
+
+
+     
+    <div   className="color-red"></div>
+    
+    
+      </div> 
+     
     )
   }
 }
