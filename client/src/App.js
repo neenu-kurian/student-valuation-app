@@ -9,6 +9,7 @@ import NewBatch from './components/games/NewBatch'
 import './App.css'
 import TopBar from './components/layout/TopBar'
 import NewStudent from './components/games/NewStudent';
+import AskQuestion from './components/games/AskQuestion'
 
 class App extends Component {
   render() {
@@ -25,7 +26,7 @@ class App extends Component {
             <Route exact path="/logout" component={LogoutPage}/>
             <Route exact path="/signup" component={SignupPage}/>
             <Route exact path="/batches" component={GamesList}/>
-            
+            <Route exact path="/students/randomstudent/:id" component={AskQuestion}/>
             <Route exact path="/batches/:id" component={GameDetails}/>
             <Route exact path="/batches/students/newbatch" component={NewBatch}/>
             <Route exact path="/" render={() => <Redirect to="/batches"/>}/>

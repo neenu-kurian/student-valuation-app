@@ -156,6 +156,13 @@ class GamesDetails extends PureComponent {
               Add Student
             </Button>
           </Link>
+          <Link to ={`/students/randomstudent/${this.props.match.params.id}`}><Button color="primary"
+              variant="raised"
+              type="submit"
+              className="ask-question">
+             Ask A Question
+            </Button>
+          </Link>
         </Paper>
       </div>
     )
