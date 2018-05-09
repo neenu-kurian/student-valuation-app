@@ -42,6 +42,7 @@ class GamesDetails extends PureComponent {
   
   handleClick(id){
    this.props.deleteStudent(id)
+  
   }
 
   renderStudents = (student) => {

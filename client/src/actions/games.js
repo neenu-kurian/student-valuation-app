@@ -84,3 +84,20 @@ export const getBatches =()=> (dispatch,getState)  => {
       .then(result => dispatch(removeStudent(id)))
       .catch(err => console.error(err))
     }
+
+    export const createBatch =(batchstate)=> (dispatch,getState)  => {
+    
+      const newbatchstate=batchstate
+      const state = getState()
+      if (!state.currentUser) return null
+       const jwt = state.currentUser.jwt
+    
+       if (isExpired(jwt)) return dispatch(logout())
+        request
+          .post(`${baseUrl}/batches/students/newbatch`)
+          .set('Authorization', `Bearer ${jwt}`)
+          .send(batchstate)
+          .then(result => dispatch(createNewBatch(batchstate)))
+          .catch(err => console.error(err))
+      }
+  
