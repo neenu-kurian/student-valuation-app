@@ -63,7 +63,7 @@ class GamesDetails extends PureComponent {
             </Typography>
             <br/>
             <Typography component="h1">
-              <img
+            <img
                 style={{
                 maxHeight: '100px'
               }}

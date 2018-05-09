@@ -16,6 +16,8 @@ class AskQuestion extends PureComponent {
         e.preventDefault()
         const randomstudent = this.props.student[Math.floor(Math.random() * this.props.student.length)]
         this.props.getRandomStudent(randomstudent)
+        
+       
     }
 
     render() {
