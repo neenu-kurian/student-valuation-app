@@ -38,7 +38,7 @@ export class BatchController {
   }
 
   @Authorized()
-  @Post('/batches/newbatch')
+  @Post('/batches/students/newbatch')
   @HttpCode(201)
   async createBatch(
   

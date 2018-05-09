@@ -33,7 +33,7 @@ class GamesDetails extends PureComponent {
   }
 
   componentWillMount() {
-
+    
     this
       .props
       .getStudentsByBatch(this.props.match.params.id)
