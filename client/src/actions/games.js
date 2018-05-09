@@ -7,6 +7,7 @@ export const UPDATE_STUDENTS='UPDATE_STUDENTS'
 export const ADD_BATCH='ADD_BATCH'
 export const ADD_STUDENT='ADD_STUDENT'
 export const DELETE_STUDENT="DELETE_STUDENT"
+export const GET_RANDOM_STUDENT="GET_RANDOM_STUDENT"
 
 export const createNewBatch = batchstate => ({
   type: ADD_BATCH,
@@ -100,4 +101,11 @@ export const getBatches =()=> (dispatch,getState)  => {
           .then(result => dispatch(createNewBatch(batchstate)))
           .catch(err => console.error(err))
       }
+
+  export const getRandomStudent=(randomstudent)=>{
+    return {
+      type: GET_RANDOM_STUDENT,
+      payload:{randomstudent}
+    }
+  }
   

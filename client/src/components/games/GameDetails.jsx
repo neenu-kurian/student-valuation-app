@@ -63,7 +63,7 @@ class GamesDetails extends PureComponent {
             </Typography>
             <br/>
             <Typography component="h1">
-              <img
+            <img
                 style={{
                 maxHeight: '100px'
               }}
@@ -154,6 +154,13 @@ class GamesDetails extends PureComponent {
               type="submit"
               className="create-student">
               Add Student
+            </Button>
+          </Link>
+          <Link to ={`/students/randomstudent/${this.props.match.params.id}`}><Button color="primary"
+              variant="raised"
+              type="submit"
+              className="ask-question">
+             Ask A Question
             </Button>
           </Link>
         </Paper>
