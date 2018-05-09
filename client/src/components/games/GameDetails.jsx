@@ -47,6 +47,8 @@ class GamesDetails extends PureComponent {
 
   }
 
+  
+
   renderStudents = (student) => {
     console.log('inside renderstudents')
     const {users, history} = this.props
@@ -63,10 +65,12 @@ class GamesDetails extends PureComponent {
             </Typography>
             <br/>
             <Typography component="h1">
-             <Link to="student/evaluation"> <img
+             <Link to={`student/evaluation/${student.id}`}> <img
                 style={{
                 maxHeight: '100px'
+                
               }}
+             
                 src={student.studentimage}/></Link>
             </Typography>
             <br/>
