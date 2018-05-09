@@ -59,15 +59,15 @@ class GamesDetails extends PureComponent {
           <CardContent >
             <br/>
             <Typography component="h1">
-              Name:{student.studentname}
+              <Link to ="/student/evaluation">Name:{student.studentname}</Link>
             </Typography>
             <br/>
             <Typography component="h1">
-            <img
+             <Link to="student/evaluation"> <img
                 style={{
                 maxHeight: '100px'
               }}
-                src={student.studentimage}/>
+                src={student.studentimage}/></Link>
             </Typography>
             <br/>
             <Typography component="h1">
