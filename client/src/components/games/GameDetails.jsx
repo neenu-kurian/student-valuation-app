@@ -3,7 +3,9 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
-//import Linearprogress from 'material-ui/LinearProgress'
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import { LinearProgress } from 'material-ui/Progress';
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import {getStudentsByBatch} from '../../actions/games'
@@ -13,6 +15,16 @@ import {Link} from 'react-router-dom'
 
 
 import './GameDetails.css'
+
+const styles = theme => ({
+  passstyle: {
+    width: '50%',
+    margin: 'auto',
+    height: '10px',
+    'margin-bottom': '10px'
+  }
+})
+
 
 class GamesDetails extends PureComponent {
   constructor(){
@@ -28,7 +40,7 @@ class GamesDetails extends PureComponent {
     if (this.props.users === null) 
       this.props.getUsers()
 
-      "/newStudent?batch="+{id:'this.props.match.params.id'}
+     
   }
   
 
@@ -36,10 +48,12 @@ class GamesDetails extends PureComponent {
     console.log('inside renderstudents')
     const {users, history} = this.props
     
-           
+        
     
 
     return (
+      <div>
+
      
       <Card key={student.id} className="student-card">
 
@@ -63,12 +77,12 @@ class GamesDetails extends PureComponent {
         </CardContent>
 
       </Card>
-
+</div>
     )
   }
 
   render() {
-    const {students, users, authenticated} = this.props
+    const {students, users, authenticated, classes} = this.props
 
     console.log('inside render')
     if (!authenticated) 
@@ -78,8 +92,10 @@ class GamesDetails extends PureComponent {
       return null
 
     return (
+      <div>
+      <LinearProgress variant="determinate" value="10" className={classes.passstyle}/>      
       <Paper className="outer-paper">
-       
+      
 
         <div>
           {students.map(student => this.renderStudents(student))}
@@ -94,6 +110,7 @@ class GamesDetails extends PureComponent {
         
       > Add Student </Button></Link>
       </Paper>
+      </div>
     )
 
    
@@ -109,4 +126,4 @@ const mapStateToProps = (state, props) => ({
   students: state.students
 })
 
-export default connect(mapStateToProps, {getUsers, getStudentsByBatch})(GamesDetails)
+export default withStyles(styles)(connect(mapStateToProps, {getUsers, getStudentsByBatch})(GamesDetails))

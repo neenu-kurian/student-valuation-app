@@ -44,7 +44,7 @@ class NewBatch extends PureComponent {
                                 StudentName
                             </label>
                             <input type="text" name="studentname" className="batchname-field" //value={this.state.batchname
-                         onChange={this.handleChange}/>
+                         onChange={this.handleChange} />
 
                         </div>
 
@@ -53,18 +53,19 @@ class NewBatch extends PureComponent {
                             </label>
                             <br/>
                             <input type="text" className="picture-field" name="studentimage" // value={this.state.enddate
-                         onChange={this.handleChange}/>
+                         onChange={this.handleChange} />
                         </div>
 
                         <CardActions>
-                            <Button
+                            <Link to ={`/batches/${this.props.match.params.batchid}`
+                            }><Button
                                 className="submit-action"
                                 onClick={this.handleSubmit}
                                 style={{
                                 textAlign: ''
                             }}>
                                 Submit
-                            </Button>
+                            </Button> </Link>
                         </CardActions>
                     </form>
 
