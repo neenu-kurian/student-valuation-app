@@ -11,9 +11,6 @@ import Typography from 'material-ui/Typography'
 import {getStudentsByBatch} from '../../actions/games'
 import {getUsers} from '../../actions/users'
 import {Link} from 'react-router-dom'
-//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-
 import './GameDetails.css'
 
 const styles = theme => ({
@@ -57,8 +54,8 @@ class GamesDetails extends PureComponent {
      
       <Card key={student.id} className="student-card">
 
-        <CardContent>
-
+        <CardContent >
+          <br/>
           <Typography component="h1">
             Name:{student.studentname}
           </Typography>
@@ -74,6 +71,11 @@ class GamesDetails extends PureComponent {
           <Typography component="h1">
             {student.evaluation}
           </Typography>
+          <br/>
+          <Button color="primary"
+        variant="raised"
+        type="submit"
+        className="delete-student">Delete</Button>
         </CardContent>
 
       </Card>

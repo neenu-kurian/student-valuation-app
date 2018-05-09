@@ -6,11 +6,13 @@
   }
   
   
-  
+  .card-content{
+    margin:10px;
+    height:100px;
+  }
   .student-card {
-    margin: 10px 10px 10px 0px;
-    height:200px;
-    width:300px;
+    margin: 10px 10px 50px 50px;
+    
   }
   
   #progressbar {
