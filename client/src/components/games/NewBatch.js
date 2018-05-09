@@ -36,7 +36,7 @@ class NewBatch extends PureComponent {
             <Card className="batch-card">
                 <CardContent>
                     <form className="batch-form">
-                    <div className="batch-field">
+                    {/*<div className="batch-field">
                             <label className="label-field">Id </label>
                             <input type="number" name="id" className="input-field"
                             id="id" 
@@ -44,7 +44,7 @@ class NewBatch extends PureComponent {
                             onChange={ this.handleChange }
                            // value={this.state.title }
                             />
-                        </div>
+        </div>*/}
 
                         <div className="batch-field">
                             <label className="label-field">Batch Number </label>

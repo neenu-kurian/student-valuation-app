@@ -31,7 +31,7 @@ class GamesList extends PureComponent {
         <CardContent>
 
           <Typography variant="headline" component="h2">
-            Batch #{batch.id}
+            Batch #{batch.batchid}
           </Typography>
           <Typography component="h1">
             Start Date:{batch.startdate}
@@ -44,7 +44,7 @@ class GamesList extends PureComponent {
         <CardActions>
         <Button
           size="small"
-          onClick={() => history.push(`/batches/${batch.id}`)}
+          onClick={() => history.push(`/batches/${batch.batchid}`)}
         >
           VIEW STUDENTS
         </Button>
