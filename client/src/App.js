@@ -10,7 +10,7 @@ import './App.css'
 import TopBar from './components/layout/TopBar'
 import NewStudent from './components/games/NewStudent';
 import AskQuestion from './components/games/AskQuestion'
-
+import Evaluation from './components/games/Evaluation'
 
 class App extends Component {
   render() {
@@ -32,7 +32,7 @@ class App extends Component {
             <Route exact path="/batches/students/newbatch" component={NewBatch}/>
             <Route exact path="/" render={() => <Redirect to="/batches"/>}/>
             <Route exact path="/newstudent/:batchid" component={NewStudent}/>
-            
+            <Route exact path="/batches/student/evaluation/:id" component={Evaluation}/>
           </main>
         </div>
       </Router>
