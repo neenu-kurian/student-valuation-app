@@ -1,4 +1,4 @@
-import {JsonController, Authorized, Get, Param,Post,HttpCode,CurrentUser,Body} from 'routing-controllers'
+import {JsonController, Authorized, Get, Param,Post,HttpCode,CurrentUser,Body,Delete,NotFoundError} from 'routing-controllers'
 import {Student, Batch} from './entities'
 import User from '../users/entity'
 
@@ -25,6 +25,20 @@ export class StudentController {
     
   }
   
+  @Authorized()
+  @Delete('/batches/students/:id')
+    async deleteStudent(
+        @Param('id') id: number
+    ) {
+        const student = await Student.findOneById(id)
+
+        if (!student) throw new NotFoundError('Student doesn\'t exist')
+
+        if (student) Student.removeById(id)
+        return 'successfully deleted'
+    }
+}
+
  
 }
 
@@ -38,7 +52,7 @@ export class BatchController {
   }
 
   @Authorized()
-  @Post('/batches/newbatch')
+  @Post('/batches/students/newbatch')
   @HttpCode(201)
   async createBatch(
   

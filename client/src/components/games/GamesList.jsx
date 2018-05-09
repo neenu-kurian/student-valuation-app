@@ -71,7 +71,7 @@ class GamesList extends PureComponent {
         <div>
           {batches.map(batch => this.renderBatch(batch))}
         </div>
-        <Link to ="/batches/newbatch" ><Button
+        <Link to ="/batches/students/newbatch" ><Button
         color="primary"
         variant="raised"
         type="submit"
