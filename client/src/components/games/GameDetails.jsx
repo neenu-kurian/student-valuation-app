@@ -8,7 +8,7 @@ import { withStyles } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
-import {getStudentsByBatch} from '../../actions/games'
+import {getStudentsByBatch,deleteStudent} from '../../actions/games'
 import {getUsers} from '../../actions/users'
 import {Link} from 'react-router-dom'
 import './GameDetails.css'
@@ -26,7 +26,7 @@ const styles = theme => ({
 class GamesDetails extends PureComponent {
   constructor(){
     super()
-    
+    this.handleClick=this.handleClick.bind(this)
   }
 
   componentWillMount() {
@@ -36,10 +36,13 @@ class GamesDetails extends PureComponent {
       .getStudentsByBatch(this.props.match.params.id)
     if (this.props.users === null) 
       this.props.getUsers()
-
+   
      
   }
   
+  handleClick(id){
+   this.props.deleteStudent(id)
+  }
 
   renderStudents = (student) => {
     console.log('inside renderstudents')
@@ -75,6 +78,8 @@ class GamesDetails extends PureComponent {
           <Button color="primary"
         variant="raised"
         type="submit"
+       
+        onClick={()=>this.handleClick(student.id)}
         className="delete-student">Delete</Button>
         </CardContent>
 
@@ -128,4 +133,4 @@ const mapStateToProps = (state, props) => ({
   students: state.students
 })
 
-export default withStyles(styles)(connect(mapStateToProps, {getUsers, getStudentsByBatch})(GamesDetails))
+export default withStyles(styles)(connect(mapStateToProps, {getUsers, getStudentsByBatch,deleteStudent})(GamesDetails))
