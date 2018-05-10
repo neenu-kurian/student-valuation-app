@@ -12,54 +12,64 @@ import '../../styles/batchStyle.css'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import moment from 'moment'
+import {submitEvaluation} from '../../actions/operations'
 
 class Evaluation extends PureComponent {
-  
-  
 
-   constructor(){
-     super()
-     this.handleClick=this.handleClick.bind(this)
-     this.handleChange=this.handleChange.bind(this)
-   }
+  constructor() {
+    super()
+    this.handleClick = this
+      .handleClick
+      .bind(this)
+    this.handleChange = this
+      .handleChange
+      .bind(this)
+    this.handleSaveClick = this
+      .handleSaveClick
+      .bind(this)
+    this.handleSaveNextClick = this
+      .handleSaveNextClick
+      .bind(this)
+  }
 
-  componentWillMount(){
-    const defaultdate=moment(Date.now()).format('MM/DD/YYYY');
+  componentWillMount() {
+    const defaultdate = moment(Date.now()).format('MM/DD/YYYY');
 
-    this.setState({
-      color:" ",
-      date:{defaultdate},
-      comments:" "
-    })
+    this.setState({color: " ", date: defaultdate, comments: " "})
   }
 
   handleClick(color) {
 
-    this.setState({color:{color}})
-    console.log(this.state.color)
+    this.setState({color: color})
+
   }
-  
-  handleChange(event){
+
+  handleChange(event) {
     const {name, value} = event.target
 
     this.setState({[name]: value})
 
-    console.log(this.state)
-  }
-  
-  handleSaveClick(){
-    
   }
 
-  handleSaveNextClick(){
+  handleSaveClick(currentstudentid) {
+    this
+      .props
+      .student
+      .map((eachstudent) => {
+        if (eachstudent.id === Number(currentstudentid)) {
+          this
+            .props
+            .submitEvaluation(eachstudent.id, this.state)
+        }
+      })
 
   }
 
-  
+  handleSaveNextClick() {}
 
   render() {
 
-    const currentdate=moment(Date.now()).format('MM/DD/YYYY');
+    const currentdate = moment(Date.now()).format('MM/DD/YYYY');
 
     const studentid = Number(this.props.match.params.id)
     const selectedStudent = this
@@ -118,21 +128,20 @@ class Evaluation extends PureComponent {
             placeholder="Comments"
             className="comment-field"
             onChange={this.handleChange}/>
-        
-        <Button
-                    color="primary"
-                    variant="raised"
-                    type="submit"
-                    onClick={this.handleSaveClick}
-                    className="save-valuation">Save</Button>
-       <Button
-                    color="primary"
-                    variant="raised"
-                    type="submit"
-                    onClick={this.handleSaveNextClick}
-                    className="next-student">Save and Next</Button>
+
+          <Button
+            color="primary"
+            variant="raised"
+            type="submit"
+            onClick={() => this.handleSaveClick(this.props.match.params.id)}
+            className="save-valuation">Save</Button>
+          <Button
+            color="primary"
+            variant="raised"
+            type="submit"
+            onClick={this.handleSaveNextClick}
+            className="next-student">Save and Next</Button>
         </Card>
-        
 
       </div>
 
@@ -148,4 +157,4 @@ const mapStateToProps = state => ({
   student: state.students
 })
 
-export default connect(mapStateToProps)(Evaluation)
+export default connect(mapStateToProps, {submitEvaluation})(Evaluation)
