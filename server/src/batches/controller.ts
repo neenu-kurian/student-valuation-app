@@ -40,7 +40,7 @@ export class StudentController {
 }
 
  
-}
+
 
 @JsonController()
 export class BatchController {
