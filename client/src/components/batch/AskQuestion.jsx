@@ -11,6 +11,11 @@ class AskQuestion extends PureComponent {
         super()
         this.handleClick=this.handleClick.bind(this)
     }
+   
+    componentWillMount(){
+        const randomstudent = this.props.student[Math.floor(Math.random() * this.props.student.length)]
+        this.props.getRandomStudent(randomstudent)
+    }
 
     handleClick(e) {
         e.preventDefault()

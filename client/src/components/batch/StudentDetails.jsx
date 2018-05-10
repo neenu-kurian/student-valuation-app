@@ -47,6 +47,7 @@ class StudentDetails extends PureComponent {
   }
 
   handleClick(id) {
+   
     this
       .props
       .deleteStudent(id)
@@ -64,9 +65,11 @@ class StudentDetails extends PureComponent {
 
           <CardContent >
             <br/>
+
             <Typography component="h1">
-              <Link to="/student/evaluation">Name:{student.studentname}</Link>
+              <Link to ={`student/evaluation/${student.id}`}>Name:{student.studentname}</Link>
             </Typography>
+
             <br/>
             <Typography component="h1">
               <Link to={`student/evaluation/${student.id}`}>
@@ -76,16 +79,12 @@ class StudentDetails extends PureComponent {
                 }}
                   src={student.studentimage}/></Link>
             </Typography>
+
             <br/>
             <Typography component="h1">
               {student.evaluation}
             </Typography>
-            <br/> {/* <Button
-              color="primary"
-              variant="raised"
-              type="submit"
-              onClick={() => this.handleClick(student.id)}
-              className="delete-student">Delete</Button> */}
+            <br/> 
             <Button
               variant="raised"
               color="secondary"
@@ -143,23 +142,18 @@ class StudentDetails extends PureComponent {
       : 0
 
     return (
+
       <div>
+
         <p>GREEN:{greenpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={greenpercentage}
-          className={classes.passstyle}/>
+        <progress max="100" value={greenpercentage} className="greenProgressBar"></progress>
+        <br/>
         <p>RED:{redpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={redpercentage}
-          color="secondary"
-          className={classes.passstyle}/>
+        <progress max="100" value={redpercentage} className="redProgressBar"></progress>
+        <br/>
         <p>YELLOW:{yellowpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={yellowpercentage}
-          className={classes.passstyle}/>
+        <progress max="100" value={yellowpercentage} className="yellowProgressBar"></progress>
+        <br/>
 
         <Paper className="outer-paper">
 
@@ -186,6 +180,7 @@ class StudentDetails extends PureComponent {
               Ask A Question
             </Button>
           </Link>
+
         </Paper>
       </div>
     )

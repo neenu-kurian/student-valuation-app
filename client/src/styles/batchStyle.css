@@ -45,5 +45,70 @@
     border: 3px;
    }
 
+  .redButton{
+    height: 25px;
+    width: 60px;
+    background-color: red;
+    color:red;
+  }
   
-  
+  .yellowButton{
+    height: 25px;
+    width: 60px;
+    background-color: yellow
+  }
+
+  .greenButton{
+    height: 25px;
+    width: 60px;
+    background-color: green
+  }
+
+  .comment-field{
+    height:200px;
+    width:700px;
+  }
+
+  .save-valuation{
+     margin-top:1000px
+  }
+
+  .redProgressBar{
+    height: 25px;
+    width: 50%;
+    border: 10px;
+    border-radius: 9px;
+  }
+
+.yellowProgressBar{
+    height: 25px;
+    width: 50%;
+     border: 10px;
+    border-radius: 9px;
+    
+  }
+
+  .greenProgressBar{
+    height: 25px;
+    width: 50%;
+    border: 10px;
+    border-radius: 9px;
+   }
+
+.yellowProgressBar::-webkit-progress-bar { background: gray; }
+
+.yellowProgressBar::-webkit-progress-value {  
+	background-color: yellow;
+}
+
+.greenProgressBar::-webkit-progress-bar { background:gray; }
+
+.greenProgressBar::-webkit-progress-value {  
+	background-color: green;
+}
+
+.redProgressBar::-webkit-progress-bar { background:gray; }
+
+.redProgressBar::-webkit-progress-value {  
+	background-color:red;
+}
