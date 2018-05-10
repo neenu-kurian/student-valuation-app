@@ -5,13 +5,13 @@ import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
-import {getBatches} from '../../actions/games'
+import {getBatches} from '../../actions/operations'
 import {getUsers} from '../../actions/users'
 import {Link} from 'react-router-dom'
 import NewBatch from './NewBatch'
-import './GamesList.css'
+import '../../styles/batchStyle.css'
 
-class GamesList extends PureComponent {
+class BatchList extends PureComponent {
   componentWillMount() {
 
     if (this.props.batches === null) 
@@ -92,4 +92,4 @@ const mapStateToProps = state => ({
   null : Object.values(state.batches).sort((a, b) => b.id - a.id)
 })
 
-export default connect(mapStateToProps, {getBatches,getUsers})(GamesList)
+export default connect(mapStateToProps, {getBatches,getUsers})(BatchList)

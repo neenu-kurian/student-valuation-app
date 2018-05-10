@@ -1,5 +1,5 @@
-import { UPDATE_STUDENTS, DELETE_STUDENT} from '../actions/games'
-import {ADD_STUDENT} from '../actions/games'
+import { UPDATE_STUDENTS, DELETE_STUDENT} from '../actions/operations'
+import {ADD_STUDENT} from '../actions/operations'
 
 /*
 The state will contain the games in an object with the game ID as key

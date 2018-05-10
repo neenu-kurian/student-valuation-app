@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import Button from 'material-ui/Button'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
-import {createBatch} from '../../actions/games'
+import {createBatch} from '../../actions/operations'
 import {Link} from 'react-router-dom'
 
 class NewBatch extends PureComponent {

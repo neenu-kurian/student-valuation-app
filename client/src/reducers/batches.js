@@ -1,5 +1,5 @@
-import { UPDATE_BATCHES} from '../actions/games'
-import {ADD_BATCH} from '../actions/games'
+import { UPDATE_BATCHES} from '../actions/operations'
+import {ADD_BATCH} from '../actions/operations'
 /*
 The state will contain the games in an object with the game ID as key
 */

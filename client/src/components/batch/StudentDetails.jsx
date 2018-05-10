@@ -8,10 +8,10 @@ import {withStyles} from 'material-ui/styles';
 import {LinearProgress} from 'material-ui/Progress';
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
-import {getStudentsByBatch, deleteStudent} from '../../actions/games'
+import {getStudentsByBatch, deleteStudent} from '../../actions/operations'
 import {getUsers} from '../../actions/users'
 import {Link} from 'react-router-dom'
-import './GameDetails.css'
+import '../../styles/batchStyle.css'
 
 const styles = theme => ({
   passstyle: {
@@ -22,7 +22,7 @@ const styles = theme => ({
   }
 })
 
-class GamesDetails extends PureComponent {
+class StudentDetails extends PureComponent {
   constructor() {
     super()
     this.handleClick = this
@@ -184,4 +184,4 @@ const mapStateToProps = (state, props) => ({
   students: state.students
 })
 
-export default withStyles(styles)(connect(mapStateToProps, {getUsers, getStudentsByBatch, deleteStudent})(GamesDetails))
+export default withStyles(styles)(connect(mapStateToProps, {getUsers, getStudentsByBatch, deleteStudent})(StudentDetails))

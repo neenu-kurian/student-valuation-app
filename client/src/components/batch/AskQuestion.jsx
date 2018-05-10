@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Button from 'material-ui/Button'
-import {getRandomStudent} from '../../actions/games'
+import {getRandomStudent} from '../../actions/operations'
 import Card, { CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 

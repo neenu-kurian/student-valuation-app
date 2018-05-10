@@ -1,4 +1,4 @@
-import {GET_RANDOM_STUDENT} from '../actions/games'
+import {GET_RANDOM_STUDENT} from '../actions/operations'
 /*
 The state will contain the games in an object with the game ID as key
 */

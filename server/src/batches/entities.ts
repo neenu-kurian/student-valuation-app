@@ -17,6 +17,9 @@ export class Student extends BaseEntity {
 
   @Column('text',{nullable:true})
   evaluation?:String
+
+  @Column('json',{nullable:true})
+  evaluationdetails?:String[]
 }
 
 
