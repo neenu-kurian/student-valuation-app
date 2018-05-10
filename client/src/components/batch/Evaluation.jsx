@@ -4,15 +4,13 @@ import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
-import {getBatches} from '../../actions/operations'
-import {getUsers} from '../../actions/users'
 import {Link} from 'react-router-dom'
-import {PostLink} from 'react-post'
 import '../../styles/batchStyle.css'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import moment from 'moment'
 import {submitEvaluation} from '../../actions/operations'
+
 
 class Evaluation extends PureComponent {
 
@@ -62,6 +60,8 @@ class Evaluation extends PureComponent {
             .submitEvaluation(eachstudent.id, this.state)
         }
       })
+
+     
 
   }
 
@@ -129,7 +129,7 @@ class Evaluation extends PureComponent {
             className="comment-field"
             onChange={this.handleChange}/>
 
-          <Button
+          <Link to ={`/batches/${selectedStudent[0].batchid}`}><Button
             color="primary"
             variant="raised"
             type="submit"
@@ -140,7 +140,7 @@ class Evaluation extends PureComponent {
             variant="raised"
             type="submit"
             onClick={this.handleSaveNextClick}
-            className="next-student">Save and Next</Button>
+            className="next-student">Save and Next</Button></Link>
         </Card>
 
       </div>
