@@ -44,5 +44,34 @@
     width:300px;
   }
 
+  .redButton{
+    height: 25px;
+    width: 60px;
+    background-color: red;
+    color:red;
+  }
   
-  
+  .yellowButton{
+    height: 25px;
+    width: 60px;
+    background-color: yellow
+  }
+
+  .greenButton{
+    height: 25px;
+    width: 60px;
+    background-color: green
+  }
+
+  .comment-field{
+    height:200px;
+    width:700px;
+  }
+
+  .save-valuation{
+     margin-top:1000px
+  }
+
+  .next-student{
+
+  }
