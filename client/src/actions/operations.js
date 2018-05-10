@@ -10,6 +10,7 @@ export const DELETE_STUDENT="DELETE_STUDENT"
 export const GET_RANDOM_STUDENT="GET_RANDOM_STUDENT"
 export const SUBMIT_EVALUATION="SUBMIT_EVALUATION"
 
+
 export const createNewBatch = batchstate => ({
   type: ADD_BATCH,
   payload: batchstate
@@ -24,6 +25,8 @@ export const removeStudent = id => ({
   type: DELETE_STUDENT,
   payload:id
 })
+
+
 
 export const getBatches =()=> (dispatch,getState)  => {
     
@@ -113,10 +116,11 @@ export const getBatches =()=> (dispatch,getState)  => {
 
   export const submitEvaluation =(id,studentstate)=> (dispatch,getState)  => {
     
+    const newstudentstate={studentstate}
     const state = getState()
     if (!state.currentUser) return null
      const jwt = state.currentUser.jwt
-  
+     
      if (isExpired(jwt)) return dispatch(logout())
      request
      .patch(`${baseUrl}/batches/student/evaluation/${id}`)

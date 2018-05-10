@@ -11,7 +11,6 @@ import TextField from 'material-ui/TextField';
 import moment from 'moment'
 import {submitEvaluation} from '../../actions/operations'
 
-
 class Evaluation extends PureComponent {
 
   constructor() {
@@ -44,7 +43,7 @@ class Evaluation extends PureComponent {
 
   handleChange(event) {
     const {name, value} = event.target
-
+    
     this.setState({[name]: value})
 
   }
@@ -60,8 +59,6 @@ class Evaluation extends PureComponent {
             .submitEvaluation(eachstudent.id, this.state)
         }
       })
-
-     
 
   }
 
@@ -113,7 +110,8 @@ class Evaluation extends PureComponent {
           <TextField
             id="evaluationdate"
             name="date"
-            value={currentdate}
+            type="date"
+            
             onChange={this.handleChange}
             InputLabelProps={{
             shrink: true
@@ -129,18 +127,20 @@ class Evaluation extends PureComponent {
             className="comment-field"
             onChange={this.handleChange}/>
 
-          <Link to ={`/batches/${selectedStudent[0].batchid}`}><Button
-            color="primary"
-            variant="raised"
-            type="submit"
-            onClick={() => this.handleSaveClick(this.props.match.params.id)}
-            className="save-valuation">Save</Button>
-          <Button
-            color="primary"
-            variant="raised"
-            type="submit"
-            onClick={this.handleSaveNextClick}
-            className="next-student">Save and Next</Button></Link>
+          <Link to ={`/batches/${selectedStudent[0].batchid}`}>
+            <Button
+              color="primary"
+              variant="raised"
+              type="submit"
+              onClick={() => this.handleSaveClick(this.props.match.params.id)}
+              className="save-valuation">Save</Button>
+            <Button
+              color="primary"
+              variant="raised"
+              type="submit"
+              onClick={this.handleSaveNextClick}
+              className="next-student">Save and Next</Button>
+          </Link>
         </Card>
 
       </div>

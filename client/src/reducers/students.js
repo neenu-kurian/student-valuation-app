@@ -1,9 +1,6 @@
 import { UPDATE_STUDENTS, DELETE_STUDENT} from '../actions/operations'
 import {ADD_STUDENT} from '../actions/operations'
-
-/*
-The state will contain the games in an object with the game ID as key
-*/
+import {ADD_EVALUATION} from '../actions/operations'
 
 
 export default (state = null, {type, payload}) => {
@@ -18,6 +15,8 @@ export default (state = null, {type, payload}) => {
     
     case DELETE_STUDENT:
      return state.splice(payload.id)
+
+    
 
     default:
       return state
