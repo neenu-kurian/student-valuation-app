@@ -61,7 +61,7 @@ class StudentDetails extends PureComponent {
           <CardContent >
             <br/>
             <Typography component="h1">
-              <Link to ="/student/evaluation">Name:{student.studentname}</Link>
+              <Link to ={`student/evaluation/${student.id}`}>Name:{student.studentname}</Link>
             </Typography>
             <br/>
             <Typography component="h1">
