@@ -22,13 +22,13 @@
   
   #progressbar {
     background-color: black;
-    border-radius: 13px; /* (height of inner div) / 2 + padding */
+    border-radius: 13px; 
     padding: 3px;
   }
   
   #progressbar > div {
      background-color: orange;
-     width: 40%; /* Adjust with JavaScript */
+     width: 40%; 
      height: 20px;
      border-radius: 10px;
   }
@@ -65,8 +65,8 @@
   }
 
   .comment-field{
-    height:200px;
-    width:700px;
+    height:75px;
+    width:590px;
   }
 
   .save-valuation{
@@ -111,4 +111,8 @@
 
 .redProgressBar::-webkit-progress-value {  
 	background-color:red;
+}
+
+.nextButton{
+  padding: 5px
 }

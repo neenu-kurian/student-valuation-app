@@ -35,11 +35,11 @@ class BatchList extends PureComponent {
             Batch #{batch.batchid}
           </Typography>
           <Typography component="h1">
-            Start Date:{batch.startdate}
+            Started at:{batch.startdate}
           </Typography>
           <br/>
           <Typography component="h1">
-            End Date:{batch.enddate}
+            Ended at:{batch.enddate}
           </Typography>
         </CardContent>
         <CardActions>

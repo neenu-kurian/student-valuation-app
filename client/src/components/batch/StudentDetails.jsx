@@ -55,7 +55,6 @@ class StudentDetails extends PureComponent {
   }
 
   renderStudents = (student) => {
-    console.log('inside renderstudents')
     const {users, history} = this.props
 
     return (
@@ -67,7 +66,7 @@ class StudentDetails extends PureComponent {
             <br/>
 
             <Typography component="h1">
-              <Link to ={`student/evaluation/${student.id}`}>Name:{student.studentname}</Link>
+              <Link to ={`student/evaluation/${student.id}`}>{student.studentname}</Link>
             </Typography>
 
             <br/>
@@ -105,7 +104,6 @@ class StudentDetails extends PureComponent {
 
     const {students, users, authenticated, classes} = this.props
 
-    console.log('inside render')
     if (!authenticated) 
       return (<Redirect to="/login"/>)
 
@@ -144,17 +142,17 @@ class StudentDetails extends PureComponent {
     return (
 
       <div>
-
-        <p>GREEN:{greenpercentage}%</p>
+        <div className="center-card">        
+        <p>Green status : {greenpercentage}%</p>
         <progress max="100" value={greenpercentage} className="greenProgressBar"></progress>
         <br/>
-        <p>RED:{redpercentage}%</p>
+        <p>Red status : {redpercentage}%</p>
         <progress max="100" value={redpercentage} className="redProgressBar"></progress>
         <br/>
-        <p>YELLOW:{yellowpercentage}%</p>
+        <p>Yellow status : {yellowpercentage}%</p>
         <progress max="100" value={yellowpercentage} className="yellowProgressBar"></progress>
         <br/>
-
+      </div>
         <Paper className="outer-paper">
 
           <div>
@@ -162,13 +160,7 @@ class StudentDetails extends PureComponent {
           </div>
 
           <Link to ={`/newstudent/${this.props.match.params.id}`}>
-            {/* <Button
-              color="primary"
-              variant="raised"
-              type="submit"
-              className="create-student">
-              Add Student
-            </Button> */}
+            
             <Button variant="fab" color="primary"
         variant="raised"
         className="create-student">

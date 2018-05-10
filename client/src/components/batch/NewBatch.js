@@ -19,7 +19,6 @@ const styles = theme => ({
   });
 class NewBatch extends PureComponent {
     constructor() {
-        console.log("inside newbatch")
         super()
         this.handleChange = this
             .handleChange
@@ -30,14 +29,12 @@ class NewBatch extends PureComponent {
     }
 
     handleSubmit = (e) => {
-        //e.preventDefault()
         this
             .props
             .createBatch(this.state)
     }
 
     handleChange = (event) => {
-        //event.preventDefault()
         const {name, value} = event.target
 
         this.setState({[name]: value})
@@ -55,6 +52,7 @@ class NewBatch extends PureComponent {
                             <TextField
           id="number"
           label="Required"
+          name="batchid"
           placeholder="Batch Number"
           required
           onChange={ this.handleChange }
@@ -68,6 +66,7 @@ class NewBatch extends PureComponent {
         <TextField
           id="number"
           placeholder="Batch Name"
+          name="batchname"
           required
           onChange={ this.handleChange }
           type="text"
@@ -78,24 +77,18 @@ class NewBatch extends PureComponent {
    <TextField
         id="startdate"
         label="Start Date"
-        type="date"
         required
         name="startdate" 
         className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
+        onChange={this.handleChange}
       />
          <TextField
         id="enddate"
         label="End Date"
-        type="date"
         required
         name="enddate" 
         className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
+        onChange={this.handleChange}
       />
 
                     <CardActions>

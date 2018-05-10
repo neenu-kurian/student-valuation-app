@@ -21,14 +21,10 @@ export default class LoginForm extends PureComponent {
 
 	render() {
 		return (
-			<div>
+			<div className="center-card">
+							<h1>Login</h1>
 			<form onSubmit={this.handleSubmit}>
-				{/* <div>
-					<label htmlFor="email">Email</label>
-					<input type="email" name="email" id="email" value={
-						this.state.email || ''
-					} onChange={ this.handleChange } />
-				</div> */}
+
 				<TextField
           id="email"
           label="Email"
@@ -40,10 +36,6 @@ export default class LoginForm extends PureComponent {
 
 				<br/>
 
-					{/* <label htmlFor="password">Password</label> */}
-					{/* <input type="password" name="password" id="password" value={
-						this.state.password || ''
-					} onChange={ this.handleChange } /> */}
 
 				<TextField
           id="password-"
@@ -54,7 +46,7 @@ export default class LoginForm extends PureComponent {
 		  onChange={ this.handleChange }
         />
 			<br/>
-				{/* <button type="submit">Login</button> */}
+
 				<Button variant="raised" color="primary" type="submit">Login</Button>
 			</form>
 			</div>

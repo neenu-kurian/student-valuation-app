@@ -6,6 +6,7 @@ import {getRandomStudent} from '../../actions/operations'
 import Card, { CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 
+
 class AskQuestion extends PureComponent {
     constructor(){
         super()
@@ -66,7 +67,7 @@ class AskQuestion extends PureComponent {
                     <CardContent >
                         <br/>
                         <Typography component="h1">
-                            Name:{this.props.askquestion.randomstudent.studentname}
+                            {this.props.askquestion.randomstudent.studentname}
                         </Typography>
                         <br/>
                         <Typography component="h1">
