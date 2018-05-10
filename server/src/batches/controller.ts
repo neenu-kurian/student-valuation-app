@@ -1,4 +1,4 @@
-import {JsonController, Authorized, Get, Param,Post,HttpCode,CurrentUser,Body,Delete,NotFoundError} from 'routing-controllers'
+import {JsonController, Authorized, Get, Param,Post,HttpCode,CurrentUser,Body,Delete,NotFoundError,Patch} from 'routing-controllers'
 import {Student, Batch} from './entities'
 import User from '../users/entity'
 
@@ -36,6 +36,22 @@ export class StudentController {
 
         if (student) Student.removeById(id)
         return 'successfully deleted'
+    }
+
+    @Authorized()
+    @Patch('/batches/student/evaluation/:id')
+    async changeEvaluation(
+        @Param('id') id: number,
+        @Body() update 
+    ) {
+        const evaluation = await Student.findOneById(id)
+
+        if (!evaluation) throw new NotFoundError(`Evaluation not found`)
+
+        const updatedEvaluation = Student.merge(evaluation, update)
+        
+        const entity = await updatedEvaluation.save()
+        return entity
     }
 }
 
