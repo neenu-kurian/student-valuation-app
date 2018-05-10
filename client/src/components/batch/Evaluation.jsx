@@ -14,10 +14,44 @@ import TextField from 'material-ui/TextField';
 import moment from 'moment'
 
 class Evaluation extends PureComponent {
+  
+  
+
+   constructor(){
+     super()
+     this.handleClick=this.handleClick.bind(this)
+     this.handleChange=this.handleChange.bind(this)
+   }
+
+  componentWillMount(){
+    const defaultdate=moment(Date.now()).format('MM/DD/YYYY');
+
+    this.setState({
+      color:" ",
+      date:{defaultdate},
+      comments:" "
+    })
+  }
 
   handleClick(color) {
 
-    console.log(color)
+    this.setState({color:{color}})
+    console.log(this.state.color)
+  }
+  
+  handleChange(event){
+    const {name, value} = event.target
+
+    this.setState({[name]: value})
+
+    console.log(this.state)
+  }
+  
+  handleSaveClick(){
+    
+  }
+
+  handleSaveNextClick(){
 
   }
 
@@ -68,9 +102,9 @@ class Evaluation extends PureComponent {
           <div>Daily evaluation for:</div>
           <TextField
             id="evaluationdate"
-            
+            name="date"
             value={currentdate}
-            required
+            onChange={this.handleChange}
             InputLabelProps={{
             shrink: true
           }}/>
@@ -80,6 +114,7 @@ class Evaluation extends PureComponent {
           <br/>
           <textarea
             type="text"
+            name="comments"
             placeholder="Comments"
             className="comment-field"
             onChange={this.handleChange}/>
@@ -88,13 +123,13 @@ class Evaluation extends PureComponent {
                     color="primary"
                     variant="raised"
                     type="submit"
-                    onClick={this.handleClick}
+                    onClick={this.handleSaveClick}
                     className="save-valuation">Save</Button>
        <Button
                     color="primary"
                     variant="raised"
                     type="submit"
-                    onClick={this.handleClick}
+                    onClick={this.handleSaveNextClick}
                     className="next-student">Save and Next</Button>
         </Card>
         
