@@ -9,7 +9,7 @@ export const ADD_STUDENT='ADD_STUDENT'
 export const DELETE_STUDENT="DELETE_STUDENT"
 export const GET_RANDOM_STUDENT="GET_RANDOM_STUDENT"
 export const SUBMIT_EVALUATION="SUBMIT_EVALUATION"
-
+export const GET_STUDENT="GET_STUDENT"
 
 export const createNewBatch = batchstate => ({
   type: ADD_BATCH,
@@ -26,6 +26,11 @@ export const removeStudent = id => ({
   payload:id
 })
 
+export const getcurrentstudent=currentstudent=>({
+  
+  type: GET_STUDENT,
+    payload: currentstudent
+})
 
 
 export const getBatches =()=> (dispatch,getState)  => {
@@ -128,4 +133,21 @@ export const getBatches =()=> (dispatch,getState)  => {
      .send({ evaluation: studentstate.color,evaluationdetails:studentstate} )
      
      .catch(err => console.error(err))
+    }
+
+    export const getCurrentStudent = (id) => (dispatch, getState) => {
+
+      const state = getState()
+      if (!state.currentUser) 
+        return null
+      const jwt = state.currentUser.jwt
+    
+      if (isExpired(jwt)) 
+        return dispatch(logout())
+      
+      request
+        .get(`${baseUrl}/batches/student/evaluation/${id}`)
+        .set('Authorization', `Bearer ${jwt}`)
+        .then(result => dispatch( getcurrentstudent(result.body) ))
+        .catch(err => console.error(err))
     }

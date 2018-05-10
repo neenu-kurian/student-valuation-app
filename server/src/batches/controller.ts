@@ -5,14 +5,14 @@ import {
   Param,
   Post,
   HttpCode,
-  CurrentUser,
   Body,
   Delete,
   NotFoundError,
   Patch
 } from 'routing-controllers'
+
 import {Student, Batch} from './entities'
-import User from '../users/entity'
+
 
 @JsonController()
 export class StudentController {
@@ -32,6 +32,12 @@ export class StudentController {
     const entity = await student.save()
     return entity
 
+  }
+
+  @Authorized()
+  @Get('/batches/student/evaluation/:id')
+  getCurrentStudent(@Param('id')id : number) {
+     return Student.findOneById(id)
   }
 
   @Authorized()

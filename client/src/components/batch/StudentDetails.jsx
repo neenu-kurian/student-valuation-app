@@ -86,7 +86,7 @@ class StudentDetails extends PureComponent {
               type="submit"
               onClick={() => this.handleClick(student.id)}
               className="delete-student">Delete</Button>
-              
+
           </CardContent>
 
         </Card>
@@ -139,23 +139,14 @@ class StudentDetails extends PureComponent {
       <div>
 
         <p>GREEN:{greenpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={greenpercentage}
-          className={classes.passstyle}/>
-
+        <progress max="100" value={greenpercentage} className="greenProgressBar"></progress>
+        <br/>
         <p>RED:{redpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={redpercentage}
-          color="secondary"
-          className={classes.passstyle}/>
-
+        <progress max="100" value={redpercentage} className="redProgressBar"></progress>
+        <br/>
         <p>YELLOW:{yellowpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={yellowpercentage}
-          className={classes.passstyle}/>
+        <progress max="100" value={yellowpercentage} className="yellowProgressBar"></progress>
+        <br/>
 
         <Paper className="outer-paper">
 
