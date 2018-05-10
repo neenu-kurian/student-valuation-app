@@ -35,7 +35,7 @@ class NewBatch extends PureComponent {
         console.log(this.props.match.params.batchid)
         return (
            
-            <Card className="batch-card">
+            <Card className="center-card">
                 <CardContent>
                     <form className="batch-form">
 

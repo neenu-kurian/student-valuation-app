@@ -3,13 +3,16 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
-import Card, {CardActions, CardContent} from 'material-ui/Card'
+import Card, {CardHeader, CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import {getBatches} from '../../actions/operations'
 import {getUsers} from '../../actions/users'
 import {Link} from 'react-router-dom'
 import NewBatch from './NewBatch'
 import '../../styles/batchStyle.css'
+import Avatar from 'material-ui/Avatar';
+import AddIcon from '@material-ui/icons/Add';
+import Icon from 'material-ui/Icon';
 
 class BatchList extends PureComponent {
   componentWillMount() {
@@ -27,7 +30,7 @@ class BatchList extends PureComponent {
 
     return (
       
-      <Card key={batch.id} className="batch-card">
+      <Card key={batch.id} className="center-card">
         <CardContent>
 
           <Typography variant="headline" component="h2">
@@ -42,12 +45,10 @@ class BatchList extends PureComponent {
           </Typography>
         </CardContent>
         <CardActions>
-        <Button
-          size="small"
-          onClick={() => history.push(`/batches/${batch.batchid}`)}
-        >
-          VIEW STUDENTS
-        </Button>
+        <Button size="small" color="primary" onClick={() => history.push(`/batches/${batch.batchid}`)}>
+            View Students
+          </Button>
+
       </CardActions>
       </Card>
     )
@@ -71,14 +72,22 @@ class BatchList extends PureComponent {
         <div>
           {batches.map(batch => this.renderBatch(batch))}
         </div>
-        <Link to ="/batches/students/newbatch" ><Button
+        <Link to ="/batches/students/newbatch" >
+        {/* <Button
         color="primary"
         variant="raised"
         type="submit"
         className="create-batch"
-      >
-        Add New Batch
-      </Button></Link>
+      > */}
+      <Button variant="fab" color="primary"
+        variant="raised"
+        className="create-batch">
+        <AddIcon /> Create new batch
+      </Button>
+
+        {/* Add New Batch
+      </Button> */}
+      </Link>
       </Paper>
      
     )

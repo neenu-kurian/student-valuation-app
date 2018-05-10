@@ -29,7 +29,7 @@ class Evaluation extends PureComponent {
     
     return (
        <div>
-        <Card  className="batch-card">
+        <Card  className="center-card">
         <CardContent>
 
           <Typography variant="headline" component="h2">
