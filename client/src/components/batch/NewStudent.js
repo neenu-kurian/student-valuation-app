@@ -4,10 +4,12 @@ import Button from 'material-ui/Button'
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import {createStudent} from '../../actions/operations'
 import {Link} from 'react-router-dom'
+import AddIcon from '@material-ui/icons/Add';
+import Icon from 'material-ui/Icon';
+import TextField from 'material-ui/TextField';
 
 class NewBatch extends PureComponent {
     constructor() {
-        console.log("inside newstudent")
         super()
         this.handleChange = this
             .handleChange
@@ -18,59 +20,63 @@ class NewBatch extends PureComponent {
     }
 
     handleSubmit = (e) => {
-        //e.preventDefault()
         this
             .props
             .createStudent(this.state,this.props.match.params.batchid)
     }
 
     handleChange = (event) => {
-        //event.preventDefault()
         const {name, value} = event.target
 
         this.setState({[name]: value})
     }
 
     render() {
-        console.log(this.props.match.params.batchid)
         return (
-           
-            <Card className="batch-card">
+           <div>
+            <Card className="center-card">
                 <CardContent>
                     <form className="batch-form">
 
-                        <div className="studentname-field">
-                            <label className="label-field">
-                                StudentName
-                            </label>
-                            <input type="text" name="studentname" className="batchname-field" //value={this.state.batchname
-                         onChange={this.handleChange} />
+        <TextField
+          id="studentname"
+          placeholder="Student Name"
+          required
+          onChange={ this.handleChange }
+          name="studentname"
+          type="text"
+          margin="normal"
+        />
 
-                        </div>
+                        <br/>
 
-                        <div className="picture-field">
-                            <label className="label-field">StudentImage
-                            </label>
-                            <br/>
-                            <input type="text" className="picture-field" name="studentimage" // value={this.state.enddate
-                         onChange={this.handleChange} />
-                        </div>
-
+        <TextField
+          id="studentimage"
+          placeholder="Student Image"
+          required
+          onChange={ this.handleChange }
+          name="studentimage"
+          type="url"
+          margin="normal"
+        />
                         <CardActions>
                             <Link to ={`/batches/${this.props.match.params.batchid}`
-                            }><Button
+                            }><Button variant="fab" color="primary"
+                            variant="raised" 
                                 className="submit-action"
                                 onClick={this.handleSubmit}
                                 style={{
                                 textAlign: ''
                             }}>
-                                Submit
-                            </Button> </Link>
+                                <AddIcon/>Add Student
+                            </Button> 
+      </Link>
                         </CardActions>
                     </form>
 
                 </CardContent>
             </Card>
+            </div>
 
         )
     }

@@ -4,10 +4,21 @@ import Button from 'material-ui/Button'
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import {createBatch} from '../../actions/operations'
 import {Link} from 'react-router-dom'
+import { withStyles } from 'material-ui/styles';
+import MenuItem from 'material-ui/Menu/MenuItem';
+import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
 
+
+const styles = theme => ({
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+      width: 200,
+    }
+  });
 class NewBatch extends PureComponent {
     constructor() {
-        console.log("inside newbatch")
         super()
         this.handleChange = this
             .handleChange
@@ -18,90 +29,80 @@ class NewBatch extends PureComponent {
     }
 
     handleSubmit = (e) => {
-        //e.preventDefault()
         this
             .props
             .createBatch(this.state)
     }
 
     handleChange = (event) => {
-        //event.preventDefault()
         const {name, value} = event.target
 
         this.setState({[name]: value})
     }
 
-    render() {
-
+    render () {
+        const  {classes} = this.props
+       
         return (
-
-            <Card className="batch-card">
+            <div>
+            <Card className="center-card">
                 <CardContent>
                     <form className="batch-form">
 
-                        <div className="batch-field">
-                            <label className="label-field">Batch Number
-                            </label>
-                            <input
-                                type="number"
-                                name="batchid"
-                                className="input-field"
-                                id="title"
-                                onChange={this.handleChange}/>
-                        </div>
+                            <TextField
+          id="number"
+          label="Required"
+          name="batchid"
+          placeholder="Batch Number"
+          required
+          onChange={ this.handleChange }
+          type="number"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin="normal"
+        />
+        <TextField
+          id="number"
+          placeholder="Batch Name"
+          name="batchname"
+          required
+          onChange={ this.handleChange }
+          type="text"
+          className={classes.textField}
+          margin="normal"
+        />
 
-                        <div className="batchname-field">
-                            <label className="label-field">
-                                BatchName
-                            </label>
-                            <input
-                                type="text"
-                                name="batchname"
-                                className="batchname-field"
-                                onChange={this.handleChange}/>
+   <TextField
+        id="startdate"
+        label="Start Date"
+        required
+        name="startdate" 
+        className={classes.textField}
+        onChange={this.handleChange}
+      />
+         <TextField
+        id="enddate"
+        label="End Date"
+        required
+        name="enddate" 
+        className={classes.textField}
+        onChange={this.handleChange}
+      />
 
-                        </div>
-
-                        <div className="startdate-field">
-                            <label className="label-field">StartDate
-                            </label>
-                            <br/>
-                            <input
-                                type="text"
-                                className="startdate-field"
-                                name="startdate"
-                                onChange={this.handleChange}/>
-                        </div>
-                        <div className="enddate-field">
-                            <label className="label-field">EndDate
-                            </label>
-                            <br/>
-                            <input
-                                type="text"
-                                className="enddate-field"
-                                name="enddate"
-                                onChange={this.handleChange}/>
-                        </div>
-
-                        <CardActions>
-                            <Link to="/batches">
-                                <Button
-                                    className="submit-action"
-                                    onClick={this.handleSubmit}
-                                    style={{
-                                    textAlign: ''
-                                }}>
-                                    Submit
-                                </Button>
-                            </Link>
-                        </CardActions>
+                    <CardActions>
+                        <Link to ="/batches"><Button  variant="raised" color="primary" className="submit-action" onClick={this.handleSubmit} 
+                        style={{ textAlign: '' }}
+                        > Submit </Button></Link>
+                    </CardActions>
                     </form>
 
                 </CardContent>
             </Card>
-
+</div>
         )
     }
 }
 
-export default connect(null, {createBatch})(NewBatch)
+export default withStyles(styles)(connect(null,{createBatch})(NewBatch))

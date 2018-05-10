@@ -1,4 +1,6 @@
 import React, {PureComponent} from 'react'
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
 
 export default class SignupForm extends PureComponent {
 	state = {}
@@ -18,27 +20,44 @@ export default class SignupForm extends PureComponent {
 
 	render() {
 		return (
+			<div className="center-card">
 			<form onSubmit={this.handleSubmit}>
-				<div>
-					<label htmlFor="email">Email</label>
-					<input type="email" name="email" id="email" value={
-						this.state.email || ''
-					} onChange={ this.handleChange } />
-				</div>
+							<h1>Sign up</h1>
+				
 
-				<div>
-					<label htmlFor="password">Password</label>
-					<input type="password" name="password" id="password" value={
-						this.state.password || ''
-					} onChange={ this.handleChange } />
-				</div>
+									<TextField
+          id="email"
+          label="Email"
+		  placeholder="Email"
+		  name="email"
+          onChange={this.handleChange}
+          margin="normal"
+        />
+				<br/>
 
-				<div>
-					<label htmlFor="confirmPassword">Confirm password</label>
-					<input type="password" name="confirmPassword" id="confirmPassword" value={
-						this.state.confirmPassword || ''
-					} onChange={ this.handleChange } />
-				</div>
+
+
+				<TextField
+          id="password-"
+          label="Password"
+		  type="password"
+		  name="password"
+		  margin="normal"
+		  onChange={ this.handleChange }
+        />
+				<br/>
+
+				
+
+				<TextField
+          id="confirmPassword-"
+          label="Confirm Password"
+		  type="password"
+		  name="confirmPassword"
+		  margin="normal"
+		  onChange={ this.handleChange }
+        />
+				<br/>
 
 				{
 					this.state.password &&
@@ -47,8 +66,10 @@ export default class SignupForm extends PureComponent {
 					<p style={{color:'red'}}>The passwords do not match!</p>
 				}
 
-				<button type="submit">Sign up</button>
+
+				<Button variant="raised" color="primary" type="submit">Sign Up</Button>
 			</form>
+			</div>
 		)
 	}
 }

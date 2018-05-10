@@ -85,19 +85,19 @@ class Evaluation extends PureComponent {
       })
 
     return (
-      <div>
-        <Card className="batch-card">
-          <CardContent>
+       <div className="center-card">
+        <Card>
+        <CardContent>
 
-            <Typography variant="headline" component="h2">
-              Name :{selectedStudent[0].studentname}
-            </Typography>
-            <Typography component="h1">
-              Batch:{selectedStudent[0].batchid}
-            </Typography>
-
-            <Typography component="h1">
-              <img
+          <Typography variant="headline" component="h2">
+            Name :{selectedStudent[0].studentname}
+          </Typography>
+          <Typography component="h1">
+            Batch:{selectedStudent[0].batchid}
+          </Typography>
+        
+          <Typography component="h1">
+            <img
                 style={{
                 maxHeight: '100px'
               }}
@@ -132,7 +132,7 @@ class Evaluation extends PureComponent {
             placeholder="Comments"
             className="comment-field"
             onChange={this.handleChange}/>
-
+          <br/>
           <Link to ={`/batches/${selectedStudent[0].batchid}`}>
             <Button
               color="primary"
@@ -145,7 +145,7 @@ class Evaluation extends PureComponent {
               variant="raised"
               type="submit"
               onClick={() => this.handleSaveNextClick(this.props.match.params.id)}
-              className="next-student">Save and Next</Button>
+              className="nextButton">Save and Next</Button>
           </Link>
         </Card>
 
