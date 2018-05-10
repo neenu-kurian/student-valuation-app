@@ -11,6 +11,7 @@ import {PostLink} from 'react-post'
 import '../../styles/batchStyle.css'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
+import moment from 'moment'
 
 class Evaluation extends PureComponent {
 
@@ -20,7 +21,11 @@ class Evaluation extends PureComponent {
 
   }
 
+  
+
   render() {
+
+    const currentdate=moment(Date.now()).format('MM/DD/YYYY');
 
     const studentid = Number(this.props.match.params.id)
     const selectedStudent = this
@@ -63,7 +68,8 @@ class Evaluation extends PureComponent {
           <div>Daily evaluation for:</div>
           <TextField
             id="evaluationdate"
-            type="date"
+            
+            value={currentdate}
             required
             InputLabelProps={{
             shrink: true
