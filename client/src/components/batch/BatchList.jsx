@@ -16,17 +16,16 @@ class BatchList extends PureComponent {
 
     if (this.props.batches === null) 
       this.props.getBatches()
-      if (this.props.users === null) this.props.getUsers()
+    if (this.props.users === null) 
+      this.props.getUsers()
 
   }
-
- 
 
   renderBatch = (batch) => {
     const {users, history} = this.props
 
     return (
-      
+
       <Card key={batch.id} className="batch-card">
         <CardContent>
 
@@ -42,54 +41,51 @@ class BatchList extends PureComponent {
           </Typography>
         </CardContent>
         <CardActions>
-        <Button
-          size="small"
-          onClick={() => history.push(`/batches/${batch.batchid}`)}
-        >
-          VIEW STUDENTS
-        </Button>
-      </CardActions>
+          <Button size="small" onClick={() => history.push(`/batches/${batch.batchid}`)}>
+            VIEW STUDENTS
+          </Button>
+        </CardActions>
       </Card>
     )
   }
 
   render() {
-    const {batches,users,authenticated} = this.props
+    const {batches, users, authenticated} = this.props
 
-    if (!authenticated) return (
-			<Redirect to="/login" />
-		)
+    if (!authenticated) 
+      return (<Redirect to="/login"/>)
 
-    if (batches === null||users===null) 
+    if (batches === null || users === null) 
       return null
 
     return (
-     
+
       <Paper className="outer-paper">
-   
-      
+
         <div>
           {batches.map(batch => this.renderBatch(batch))}
         </div>
-        <Link to ="/batches/students/newbatch" ><Button
-        color="primary"
-        variant="raised"
-        type="submit"
-        className="create-batch"
-      >
-        Add New Batch
-      </Button></Link>
+        <Link to="/batches/students/newbatch">
+          <Button color="primary" variant="raised" type="submit" className="create-batch">
+            Add New Batch
+          </Button>
+        </Link>
       </Paper>
-     
+
     )
   }
 }
 
 const mapStateToProps = state => ({
   authenticated: state.currentUser !== null,
-  users: state.users === null ? null : state.users,
-  batches: state.batches==null?
-  null : Object.values(state.batches).sort((a, b) => b.id - a.id)
+  users: state.users === null
+    ? null
+    : state.users,
+  batches: state.batches == null
+    ? null
+    : Object
+      .values(state.batches)
+      .sort((a, b) => b.id - a.id)
 })
 
-export default connect(mapStateToProps, {getBatches,getUsers})(BatchList)
+export default connect(mapStateToProps, {getBatches, getUsers})(BatchList)

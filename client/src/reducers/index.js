@@ -5,6 +5,7 @@ import currentUser from './currentUser'
 import signup from './signup'
 import students from './students'
 import askquestion from './askquestion'
+import currentstudent from './currentstudent'
 
 export default {
   batches,
@@ -13,5 +14,6 @@ export default {
   currentUser,
   signup,
   students,
-  askquestion
+  askquestion,
+  currentstudent
 }

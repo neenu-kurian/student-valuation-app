@@ -72,6 +72,42 @@
      margin-top:1000px
   }
 
-  .next-student{
-
+  .redProgressBar{
+    height: 25px;
+    width: 50%;
+    border: 10px;
+    border-radius: 9px;
   }
+
+.yellowProgressBar{
+    height: 25px;
+    width: 50%;
+     border: 10px;
+    border-radius: 9px;
+    
+  }
+
+  .greenProgressBar{
+    height: 25px;
+    width: 50%;
+    border: 10px;
+    border-radius: 9px;
+   }
+
+.yellowProgressBar::-webkit-progress-bar { background: gray; }
+
+.yellowProgressBar::-webkit-progress-value {  
+	background-color: yellow;
+}
+
+.greenProgressBar::-webkit-progress-bar { background:gray; }
+
+.greenProgressBar::-webkit-progress-value {  
+	background-color: green;
+}
+
+.redProgressBar::-webkit-progress-bar { background:gray; }
+
+.redProgressBar::-webkit-progress-value {  
+	background-color:red;
+}

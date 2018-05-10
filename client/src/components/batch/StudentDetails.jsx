@@ -41,13 +41,12 @@ class StudentDetails extends PureComponent {
   }
 
   handleClick(id) {
+   
     this
       .props
       .deleteStudent(id)
 
   }
-
-  
 
   renderStudents = (student) => {
     console.log('inside renderstudents')
@@ -60,23 +59,26 @@ class StudentDetails extends PureComponent {
 
           <CardContent >
             <br/>
+
             <Typography component="h1">
-              <Link to ="/student/evaluation">Name:{student.studentname}</Link>
+              <Link to ={`student/evaluation/${student.id}`}>Name:{student.studentname}</Link>
             </Typography>
+
             <br/>
             <Typography component="h1">
-             <Link to={`student/evaluation/${student.id}`}> <img
-                style={{
-                maxHeight: '100px'
-                
-              }}
-             
-                src={student.studentimage}/></Link>
+              <Link to={`student/evaluation/${student.id}`}>
+                <img
+                  style={{
+                  maxHeight: '100px'
+                }}
+                  src={student.studentimage}/></Link>
             </Typography>
+
             <br/>
             <Typography component="h1">
               {student.evaluation}
             </Typography>
+
             <br/>
             <Button
               color="primary"
@@ -84,6 +86,7 @@ class StudentDetails extends PureComponent {
               type="submit"
               onClick={() => this.handleClick(student.id)}
               className="delete-student">Delete</Button>
+
           </CardContent>
 
         </Card>
@@ -120,31 +123,30 @@ class StudentDetails extends PureComponent {
     const redlength = students.filter(function (student) {
       return student.evaluation === 'red'
     }).length
-    
-    
-    const greenpercentage = (totallength>0)? (((greenlength / totallength) * 100).toFixed(2)):0
-    const yellowpercentage = (totallength>0)? (((yellowlength / totallength) * 100).toFixed(2)):0
-    const redpercentage = (totallength>0)? (((redlength / totallength) * 100).toFixed(2)):0
-    
-    
+
+    const greenpercentage = (totallength > 0)
+      ? (((greenlength / totallength) * 100).toFixed(2))
+      : 0
+    const yellowpercentage = (totallength > 0)
+      ? (((yellowlength / totallength) * 100).toFixed(2))
+      : 0
+    const redpercentage = (totallength > 0)
+      ? (((redlength / totallength) * 100).toFixed(2))
+      : 0
+
     return (
+
       <div>
+
         <p>GREEN:{greenpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={greenpercentage}
-          className={classes.passstyle}/>
+        <progress max="100" value={greenpercentage} className="greenProgressBar"></progress>
+        <br/>
         <p>RED:{redpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={redpercentage}
-          color="secondary"
-          className={classes.passstyle}/>
+        <progress max="100" value={redpercentage} className="redProgressBar"></progress>
+        <br/>
         <p>YELLOW:{yellowpercentage}%</p>
-        <LinearProgress
-          variant="determinate"
-          value={yellowpercentage}
-          className={classes.passstyle}/>
+        <progress max="100" value={yellowpercentage} className="yellowProgressBar"></progress>
+        <br/>
 
         <Paper className="outer-paper">
 
@@ -161,13 +163,13 @@ class StudentDetails extends PureComponent {
               Add Student
             </Button>
           </Link>
-          <Link to ={`/students/randomstudent/${this.props.match.params.id}`}><Button color="primary"
-              variant="raised"
-              type="submit"
-              className="ask-question">
-             Ask A Question
+
+          <Link to ={`/students/randomstudent/${this.props.match.params.id}`}>
+            <Button color="primary" variant="raised" type="submit" className="ask-question">
+              Ask A Question
             </Button>
           </Link>
+
         </Paper>
       </div>
     )

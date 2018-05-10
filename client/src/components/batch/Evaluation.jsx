@@ -10,7 +10,7 @@ import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import moment from 'moment'
 import {submitEvaluation} from '../../actions/operations'
-
+import {getCurrentStudent} from '../../actions/operations'
 
 class Evaluation extends PureComponent {
 
@@ -34,6 +34,8 @@ class Evaluation extends PureComponent {
     const defaultdate = moment(Date.now()).format('MM/DD/YYYY');
 
     this.setState({color: " ", date: defaultdate, comments: " "})
+    this.props.getCurrentStudent(Number(this.props.match.params.id))
+
   }
 
   handleClick(color) {
@@ -44,12 +46,13 @@ class Evaluation extends PureComponent {
 
   handleChange(event) {
     const {name, value} = event.target
-
+    
     this.setState({[name]: value})
 
   }
 
   handleSaveClick(currentstudentid) {
+    
     this
       .props
       .student
@@ -61,11 +64,12 @@ class Evaluation extends PureComponent {
         }
       })
 
-     
-
   }
 
-  handleSaveNextClick() {}
+  handleSaveNextClick(currentstudentid) {
+
+    this.props.getCurrentStudent(Number(currentstudentid))
+  }
 
   render() {
 
@@ -113,7 +117,7 @@ class Evaluation extends PureComponent {
           <TextField
             id="evaluationdate"
             name="date"
-            value={currentdate}
+            value={currentdate||this.state.date}
             onChange={this.handleChange}
             InputLabelProps={{
             shrink: true
@@ -129,18 +133,20 @@ class Evaluation extends PureComponent {
             className="comment-field"
             onChange={this.handleChange}/>
 
-          <Link to ={`/batches/${selectedStudent[0].batchid}`}><Button
-            color="primary"
-            variant="raised"
-            type="submit"
-            onClick={() => this.handleSaveClick(this.props.match.params.id)}
-            className="save-valuation">Save</Button>
-          <Button
-            color="primary"
-            variant="raised"
-            type="submit"
-            onClick={this.handleSaveNextClick}
-            className="next-student">Save and Next</Button></Link>
+          <Link to ={`/batches/${selectedStudent[0].batchid}`}>
+            <Button
+              color="primary"
+              variant="raised"
+              type="submit"
+              onClick={() => this.handleSaveClick(this.props.match.params.id)}
+              className="save-valuation">Save</Button>
+            <Button
+              color="primary"
+              variant="raised"
+              type="submit"
+              onClick={() => this.handleSaveNextClick(this.props.match.params.id)}
+              className="next-student">Save and Next</Button>
+          </Link>
         </Card>
 
       </div>
@@ -150,11 +156,14 @@ class Evaluation extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  
+  currentstudent:state.currentstudent,
   authenticated: state.currentUser !== null,
   users: state.users === null
     ? null
     : state.users,
   student: state.students
+  
 })
 
-export default connect(mapStateToProps, {submitEvaluation})(Evaluation)
+export default connect(mapStateToProps, {submitEvaluation,getCurrentStudent})(Evaluation)

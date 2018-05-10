@@ -1,6 +1,18 @@
-import {JsonController, Authorized, Get, Param,Post,HttpCode,CurrentUser,Body,Delete,NotFoundError,Patch} from 'routing-controllers'
+import {
+  JsonController,
+  Authorized,
+  Get,
+  Param,
+  Post,
+  HttpCode,
+  Body,
+  Delete,
+  NotFoundError,
+  Patch
+} from 'routing-controllers'
+
 import {Student, Batch} from './entities'
-import User from '../users/entity'
+
 
 @JsonController()
 export class StudentController {
@@ -12,51 +24,49 @@ export class StudentController {
         batchid
       }})
   }
-   
+
   @Authorized()
   @Post('/batches/newstudent/:batchid')
   @HttpCode(201)
-  async createStudent(
-  
-    @Body() student:Student
-  ) {
+  async createStudent(@Body()student : Student) {
     const entity = await student.save()
     return entity
-    
+
   }
-  
+
+  @Authorized()
+  @Get('/batches/student/evaluation/:id')
+  getCurrentStudent(@Param('id')id : number) {
+     return Student.findOneById(id)
+  }
+
   @Authorized()
   @Delete('/batches/students/:id')
-    async deleteStudent(
-        @Param('id') id: number
-    ) {
-        const student = await Student.findOneById(id)
+  async deleteStudent(@Param('id')id : number) {
+    const student = await Student.findOneById(id)
 
-        if (!student) throw new NotFoundError('Student doesn\'t exist')
+    if (!student) 
+      throw new NotFoundError('Student doesn\'t exist')
 
-        if (student) Student.removeById(id)
-        return 'successfully deleted'
-    }
+    if (student) 
+      Student.removeById(id)
+    return 'successfully deleted'
+  }
 
-    @Authorized()
-    @Patch('/batches/student/evaluation/:id')
-    async changeEvaluation(
-        @Param('id') id: number,
-        @Body() update 
-    ) {
-        const evaluation = await Student.findOneById(id)
+  @Authorized()
+  @Patch('/batches/student/evaluation/:id')
+  async changeEvaluation(@Param('id')id : number, @Body()update) {
+    const evaluation = await Student.findOneById(id)
 
-        if (!evaluation) throw new NotFoundError(`Evaluation not found`)
+    if (!evaluation) 
+      throw new NotFoundError(`Evaluation not found`)
 
-        const updatedEvaluation = Student.merge(evaluation, update)
-        
-        const entity = await updatedEvaluation.save()
-        return entity
-    }
+    const updatedEvaluation = Student.merge(evaluation, update)
+
+    const entity = await updatedEvaluation.save()
+    return entity
+  }
 }
-
- 
-
 
 @JsonController()
 export class BatchController {
@@ -70,12 +80,9 @@ export class BatchController {
   @Authorized()
   @Post('/batches/students/newbatch')
   @HttpCode(201)
-  async createBatch(
-  
-    @Body() batch:Batch
-  ) {
+  async createBatch(@Body()batch : Batch) {
     const entity = await batch.save()
     return entity
-    
+
   }
 }
