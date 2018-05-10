@@ -12,6 +12,12 @@ export class StudentController {
         batchid
       }})
   }
+
+  @Authorized()
+  @Get('/batches/student/evaluation/:id')
+  getCurrentStudent(@Param('id')id : number) {
+     return Student.findOneById(id)
+  }
    
   @Authorized()
   @Post('/batches/newstudent/:batchid')

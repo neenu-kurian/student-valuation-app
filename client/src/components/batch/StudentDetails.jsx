@@ -11,6 +11,7 @@ import Typography from 'material-ui/Typography'
 import {getStudentsByBatch, deleteStudent} from '../../actions/operations'
 import {getUsers} from '../../actions/users'
 import {Link} from 'react-router-dom'
+//import {getCurrentStudent} from '../../actions/operations'
 import '../../styles/batchStyle.css'
 
 const styles = theme => ({
@@ -28,6 +29,7 @@ class StudentDetails extends PureComponent {
     this.handleClick = this
       .handleClick
       .bind(this)
+      this.handleImageClick=this.handleImageClick.bind(this)
   }
 
   componentWillMount() {
@@ -46,8 +48,10 @@ class StudentDetails extends PureComponent {
       .deleteStudent(id)
 
   }
-
   
+  handleImageClick(id){
+    //this.props.getCurrentStudent(id)
+  }
 
   renderStudents = (student) => {
     console.log('inside renderstudents')
@@ -70,7 +74,7 @@ class StudentDetails extends PureComponent {
                 maxHeight: '100px'
                 
               }}
-             
+                oncClick={()=>this.handleImageClick(student.id)}
                 src={student.studentimage}/></Link>
             </Typography>
             <br/>

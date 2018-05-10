@@ -10,7 +10,7 @@ import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import moment from 'moment'
 import {submitEvaluation} from '../../actions/operations'
-
+import {getCurrentStudent} from '../../actions/operations'
 
 class Evaluation extends PureComponent {
 
@@ -28,12 +28,22 @@ class Evaluation extends PureComponent {
     this.handleSaveNextClick = this
       .handleSaveNextClick
       .bind(this)
+      
   }
 
   componentWillMount() {
     const defaultdate = moment(Date.now()).format('MM/DD/YYYY');
 
     this.setState({color: " ", date: defaultdate, comments: " "})
+
+    
+
+    if(this.props.currStudent===null){
+      this.props.getCurrentStudent(Number(this.props.match.params.id))
+    }
+       
+  
+    
   }
 
   handleClick(color) {
@@ -65,7 +75,15 @@ class Evaluation extends PureComponent {
 
   }
 
-  handleSaveNextClick() {}
+  handleSaveNextClick() {
+    this.props.student.map((eachstudent)=>{
+      this.props.match.params.id=eachstudent.id
+      
+      //this.handleSaveClick(eachstudent.id)
+      this.props.getCurrentStudent(eachstudent.id)
+    })
+   
+  }
 
   render() {
 
@@ -79,6 +97,7 @@ class Evaluation extends PureComponent {
         if (student.id === studentid) 
           return student
       })
+   
 
     return (
       <div>
@@ -86,10 +105,10 @@ class Evaluation extends PureComponent {
           <CardContent>
 
             <Typography variant="headline" component="h2">
-              Name :{selectedStudent[0].studentname}
+              Name :{this.props.currStudent.studentname}
             </Typography>
             <Typography component="h1">
-              Batch:{selectedStudent[0].batchid}
+              Batch:{this.props.currStudent.batchid}
             </Typography>
 
             <Typography component="h1">
@@ -97,7 +116,7 @@ class Evaluation extends PureComponent {
                 style={{
                 maxHeight: '100px'
               }}
-                src={selectedStudent[0].studentimage}/>
+                src={this.props.currStudent.studentimage}/>
             </Typography>
           </CardContent>
           <CardActions>
@@ -134,8 +153,8 @@ class Evaluation extends PureComponent {
             variant="raised"
             type="submit"
             onClick={() => this.handleSaveClick(this.props.match.params.id)}
-            className="save-valuation">Save</Button>
-          <Button
+            className="save-valuation">Save</Button></Link>
+          <Link to ={`/batches/student/evaluation/${this.props.match.params.id}`}><Button
             color="primary"
             variant="raised"
             type="submit"
@@ -149,12 +168,14 @@ class Evaluation extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  authenticated: state.currentUser !== null,
-  users: state.users === null
+const mapStateToProps = reduxstate => ({
+  authenticated: reduxstate.currentUser !== null,
+  users: reduxstate.users === null
     ? null
-    : state.users,
-  student: state.students
+    : reduxstate.users,
+    currStudent:reduxstate.currentStudent,
+  student: reduxstate.students,
+  
 })
 
-export default connect(mapStateToProps, {submitEvaluation})(Evaluation)
+export default connect(mapStateToProps, {submitEvaluation,getCurrentStudent})(Evaluation)
