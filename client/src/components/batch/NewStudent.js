@@ -5,7 +5,6 @@ import Card, {CardActions, CardContent} from 'material-ui/Card'
 import {createStudent} from '../../actions/operations'
 import {Link} from 'react-router-dom'
 import AddIcon from '@material-ui/icons/Add';
-import Icon from 'material-ui/Icon';
 import TextField from 'material-ui/TextField';
 
 class NewBatch extends PureComponent {
@@ -61,13 +60,11 @@ class NewBatch extends PureComponent {
         />
                         <CardActions>
                             <Link to ={`/batches/${this.props.match.params.batchid}`
-                            }><Button variant="fab" color="primary"
+                            }><Button  color="primary"
                             variant="raised" 
                                 className="submit-action"
                                 onClick={this.handleSubmit}
-                                style={{
-                                textAlign: ''
-                            }}>
+                                >
                                 <AddIcon/>Add Student
                             </Button> 
       </Link>

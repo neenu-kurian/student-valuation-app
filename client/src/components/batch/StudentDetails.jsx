@@ -3,10 +3,8 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
-import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import {LinearProgress} from 'material-ui/Progress';
-import Card, {CardActions, CardContent} from 'material-ui/Card'
+import Card, { CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import {getStudentsByBatch, deleteStudent} from '../../actions/operations'
 import {getUsers} from '../../actions/users'
@@ -14,7 +12,6 @@ import {Link} from 'react-router-dom'
 import '../../styles/batchStyle.css'
 import Delete from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from 'material-ui/Icon';
 
 const styles = theme => ({
   passstyle: {
@@ -55,7 +52,7 @@ class StudentDetails extends PureComponent {
   }
 
   renderStudents = (student) => {
-    const {users, history} = this.props
+  
 
     return (
       <div>
@@ -72,7 +69,7 @@ class StudentDetails extends PureComponent {
             <br/>
             <Typography component="h1">
               <Link to={`student/evaluation/${student.id}`}>
-                <img
+                <img alt="Student Pic"
                   style={{
                   maxHeight: '100px'
                 }}
@@ -161,7 +158,7 @@ class StudentDetails extends PureComponent {
 
           <Link to ={`/newstudent/${this.props.match.params.id}`}>
             
-            <Button variant="fab" color="primary"
+            <Button  color="primary"
         variant="raised"
         className="create-student">
         <AddIcon /> Add Student

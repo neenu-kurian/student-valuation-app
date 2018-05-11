@@ -71,7 +71,7 @@ class AskQuestion extends PureComponent {
                         </Typography>
                         <br/>
                         <Typography component="h1">
-                            <img
+                            <img alt="Student"
                                 style={{
                                 maxHeight: '100px'
                             }}

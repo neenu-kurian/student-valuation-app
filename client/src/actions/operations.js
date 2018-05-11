@@ -97,7 +97,6 @@ export const getBatches =()=> (dispatch,getState)  => {
 
     export const createBatch =(batchstate)=> (dispatch,getState)  => {
     
-      const newbatchstate=batchstate
       const state = getState()
       if (!state.currentUser) return null
        const jwt = state.currentUser.jwt
@@ -121,7 +120,6 @@ export const getBatches =()=> (dispatch,getState)  => {
 
   export const submitEvaluation =(id,studentstate)=> (dispatch,getState)  => {
     
-    const newstudentstate={studentstate}
     const state = getState()
     if (!state.currentUser) return null
      const jwt = state.currentUser.jwt
