@@ -11,6 +11,7 @@ import TextField from 'material-ui/TextField';
 import moment from 'moment'
 import {submitEvaluation} from '../../actions/operations'
 import {getCurrentStudent} from '../../actions/operations'
+import store from '../../store.js'
 
 class Evaluation extends PureComponent {
 
@@ -72,7 +73,8 @@ class Evaluation extends PureComponent {
   }
 
   render() {
-
+    
+    console.log(this.props.currentstudent)
     const currentdate = moment(Date.now()).format('MM/DD/YYYY');
 
     const studentid = Number(this.props.match.params.id)
@@ -148,22 +150,22 @@ class Evaluation extends PureComponent {
               className="nextButton">Save and Next</Button>
           </Link>
         </Card>
-
+       {/*<div>name:{this.props.currentstudent.payload.id}</div>*/}
       </div>
 
     )
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
   
-  currentstudent:state.currentstudent,
+  return{currentstudent:state.currentstudent,
   authenticated: state.currentUser !== null,
   users: state.users === null
     ? null
     : state.users,
-  student: state.students
+  student: state.students}
   
-})
+}
 
 export default connect(mapStateToProps, {submitEvaluation,getCurrentStudent})(Evaluation)

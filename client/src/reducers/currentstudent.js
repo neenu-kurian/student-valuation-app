@@ -9,11 +9,11 @@ export default (state = null, {type, payload}) => {
     case GET_STUDENT:
       {   
          
-         return {...state,id:payload.id,batchid:payload.batchid,studentimage:payload.studentimage,studentname:payload.studentname,
-          evaluation:payload.evaluation,evaluationdetails:payload.evaluationd}
+         return {...state,payload}
       }
 
     default:
       return state
   }
 }
+
