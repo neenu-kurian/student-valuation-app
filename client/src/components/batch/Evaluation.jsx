@@ -1,12 +1,10 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import Button from 'material-ui/Button'
-import Paper from 'material-ui/Paper'
 import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import {Link} from 'react-router-dom'
 import '../../styles/batchStyle.css'
-import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import moment from 'moment'
 import {submitEvaluation} from '../../actions/operations'
@@ -98,7 +96,7 @@ class Evaluation extends PureComponent {
         
           <Typography component="h1">
             <img
-                style={{
+                alt='studentpicture' style={{
                 maxHeight: '100px'
               }}
                 src={selectedStudent[0].studentimage}/>

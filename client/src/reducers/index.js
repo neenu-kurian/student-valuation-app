@@ -4,7 +4,7 @@ import login from './login'
 import currentUser from './currentUser'
 import signup from './signup'
 import students from './students'
-import askquestion from './askquestion'
+import randomstudent from './randomstudent'
 import currentstudent from './currentstudent'
 
 export default {
@@ -14,6 +14,6 @@ export default {
   currentUser,
   signup,
   students,
-  askquestion,
+  randomstudent,
   currentstudent
 }

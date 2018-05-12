@@ -3,16 +3,13 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
-import Card, {CardHeader, CardActions, CardContent} from 'material-ui/Card'
+import Card, { CardActions, CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import {getBatches} from '../../actions/operations'
 import {getUsers} from '../../actions/users'
 import {Link} from 'react-router-dom'
-import NewBatch from './NewBatch'
 import '../../styles/batchStyle.css'
-import Avatar from 'material-ui/Avatar';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from 'material-ui/Icon';
 
 class BatchList extends PureComponent {
   componentWillMount() {
@@ -70,7 +67,7 @@ class BatchList extends PureComponent {
           {batches.map(batch => this.renderBatch(batch))}
         </div>
         <Link to ="/batches/students/newbatch" >
-      <Button variant="fab" color="primary"
+      <Button color="primary"
         variant="raised"
         className="create-batch" type="submit">
         <AddIcon /> Create new batch

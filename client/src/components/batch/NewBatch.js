@@ -5,9 +5,8 @@ import Card, {CardActions, CardContent} from 'material-ui/Card'
 import {createBatch} from '../../actions/operations'
 import {Link} from 'react-router-dom'
 import { withStyles } from 'material-ui/styles';
-import MenuItem from 'material-ui/Menu/MenuItem';
 import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
+
 
 
 const styles = theme => ({
@@ -17,6 +16,7 @@ const styles = theme => ({
       width: 200,
     }
   });
+  
 class NewBatch extends PureComponent {
     constructor() {
         super()
