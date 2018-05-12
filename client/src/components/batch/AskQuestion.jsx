@@ -10,56 +10,58 @@ import Typography from 'material-ui/Typography'
 class AskQuestion extends PureComponent {
     constructor(){
         super()
-        this.handleClick=this.handleClick.bind(this)
+        this.getRandomColor=this.getRandomColor.bind(this)
+        this.getStudentRandom=this.getStudentRandom.bind(this)
     }
    
     componentWillMount(){
         const randomstudent = this.props.student[Math.floor(Math.random() * this.props.student.length)]
         this.props.getRandomStudent(randomstudent)
     }
+   
+     getRandomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+    };
+   
+    getRandomColor(weight,filteredcolors){
+        const total_weight=Number(100);
+              
+        var random_num = this.getRandomNumber(0, total_weight)
+        let weight_sum=0;
 
-    handleClick(e) {
-        e.preventDefault()
-        const randomstudent = this.props.student[Math.floor(Math.random() * this.props.student.length)]
-        this.props.getRandomStudent(randomstudent)
-        
-       
+        for (let i = 0; i < filteredcolors.length; i++) {
+            weight_sum += weight[i];
+            weight_sum = +weight_sum.toFixed(2);
+             
+            if (random_num <= weight_sum) {
+                return filteredcolors[i];
+            }
+        }
+    }
+
+    getStudentRandom(weight,filteredcolors){
+        const selectedcolor=this.getRandomColor(weight,filteredcolors)
+       const selectedstudent=this.props.student.filter((eachstudent)=>{
+           if(eachstudent.evaluation===selectedcolor)
+           return eachstudent
+       })
+       if(selectedstudent.length>0) {
+       this.props.getRandomStudent(selectedstudent[0])
+       console.log(selectedstudent[0].evaluation)
+       }
+       else{
+           alert(`No students with color ${selectedcolor} .Please try again`)
+       }
+
     }
 
     render() {
-
-        const studentlength = this.props.student.length
-
-        const greenstudent = this
-            .props
-            .student
-            .filter(function (student) {
-                return student.evaluation === 'green'
-            })
-            .length
-
-        const yellowstudent = this
-            .props
-            .student
-            .filter(function (student) {
-                return student.evaluation === 'yellow'
-            })
-            .length
-
-        const redstudent = this
-            .props
-            .student
-            .filter(function (student) {
-                return student.evaluation === 'red'
-            })
-            .length
-
-        const numofredchances = Math.round(0.53 * studentlength)
-        const numofyellochances = Math.round(0.28 * studentlength)
-        const numofgreenchances = Math.round(0.19 * studentlength)
-
+   
         
-
+        const weight=[19,28,53]
+       
+       const filteredcolors=["green","yellow","red"]
+        
         return (
             <div>
                 {<Card className="random-card">
@@ -67,7 +69,7 @@ class AskQuestion extends PureComponent {
                     <CardContent >
                         <br/>
                         <Typography component="h1">
-                            {this.props.askquestion.randomstudent.studentname}
+                            {this.props.randomstudent.studentname}
                         </Typography>
                         <br/>
                         <Typography component="h1">
@@ -75,7 +77,7 @@ class AskQuestion extends PureComponent {
                                 style={{
                                 maxHeight: '100px'
                             }}
-                                src={this.props.askquestion.randomstudent.studentimage}/>
+                                src={this.props.randomstudent.studentimage}/>
                         </Typography>
 
                     </CardContent>
@@ -86,7 +88,7 @@ class AskQuestion extends PureComponent {
                     color="primary"
                     variant="raised"
                     type="submit"
-                    onClick={this.handleClick}
+                    onClick={()=>this.getStudentRandom(weight,filteredcolors)}
                     className="get-random">Get Another Student</Button>
 
                 <Link to ={`/batches/${this.props.match.params.id}`}>
@@ -96,6 +98,6 @@ class AskQuestion extends PureComponent {
         )
     }
 }
-const mapStateToProps = (state) => ({student: state.students,askquestion:state.askquestion})
+const mapStateToProps = (state) => ({student: state.students,randomstudent:state.randomstudent})
 
 export default connect(mapStateToProps, {getRandomStudent})(AskQuestion)
