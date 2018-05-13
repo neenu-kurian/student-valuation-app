@@ -5,7 +5,21 @@ import Button from 'material-ui/Button'
 import {getRandomStudent} from '../../actions/operations'
 import Card, { CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
+import { Redirect } from 'react-router'
 
+ 
+const weight=[19,28,53]
+       
+const filteredcolors=["green","yellow","red"]
+
+const randomstate={
+    id:" ",
+    batchid:" ",
+    evaluation:" ",
+    evaluationdetails:" ",
+    studentimage:" ",
+    studentname:" "
+}
 
 class AskQuestion extends PureComponent {
     constructor(){
@@ -15,8 +29,7 @@ class AskQuestion extends PureComponent {
     }
    
     componentWillMount(){
-        const randomstudent = this.props.student[Math.floor(Math.random() * this.props.student.length)]
-        this.props.getRandomStudent(randomstudent)
+        this.getStudentRandom()
     }
    
      getRandomNumber(min, max) {
@@ -27,11 +40,12 @@ class AskQuestion extends PureComponent {
         const total_weight=Number(100);
               
         var random_num = this.getRandomNumber(0, total_weight)
+        console.log(random_num)
         let weight_sum=0;
 
         for (let i = 0; i < filteredcolors.length; i++) {
             weight_sum += weight[i];
-            weight_sum = +weight_sum.toFixed(2);
+            
              
             if (random_num <= weight_sum) {
                 return filteredcolors[i];
@@ -39,28 +53,41 @@ class AskQuestion extends PureComponent {
         }
     }
 
-    getStudentRandom(weight,filteredcolors){
+    getStudentRandom(){
         const selectedcolor=this.getRandomColor(weight,filteredcolors)
+        let isEvaluated = false
        const selectedstudent=this.props.student.filter((eachstudent)=>{
-           if(eachstudent.evaluation===selectedcolor)
+           if(eachstudent.evaluation===selectedcolor){
+               isEvaluated=true
            return eachstudent
+           }else if(eachstudent.evaluation===null){
+               isEvaluated = false
+           }
+           else if(eachstudent.evaluation!==null){
+               isEvaluated=true
+           }
+          
        })
-       if(selectedstudent.length>0) {
-       this.props.getRandomStudent(selectedstudent[0])
-       console.log(selectedstudent[0].evaluation)
+    //    console.log(selectedstudent[0].evaluation)
+        if(selectedstudent.length>0) {
+            this.props.getRandomStudent(selectedstudent[0])
+         }else{
+             if(!isEvaluated){
+                alert("No evaluation happend yet for the selected student")
+             }else{
+                alert(`No students with color ${selectedcolor} .Please try again`)                
+            }
+           
+           this.props.getRandomStudent(randomstate)
+           // <Link to={`/batches/${this.props.match.params.id}`}/>
        }
-       else{
-           alert(`No students with color ${selectedcolor} .Please try again`)
-       }
+
 
     }
 
     render() {
    
-        
-        const weight=[19,28,53]
        
-       const filteredcolors=["green","yellow","red"]
         
         return (
             <div>
@@ -73,7 +100,7 @@ class AskQuestion extends PureComponent {
                         </Typography>
                         <br/>
                         <Typography component="h1">
-                            <img alt="Student"
+                            <img 
                                 style={{
                                 maxHeight: '100px'
                             }}
@@ -88,7 +115,7 @@ class AskQuestion extends PureComponent {
                     color="primary"
                     variant="raised"
                     type="submit"
-                    onClick={()=>this.getStudentRandom(weight,filteredcolors)}
+                    onClick={this.getStudentRandom}
                     className="get-random">Get Another Student</Button>
 
                 <Link to ={`/batches/${this.props.match.params.id}`}>
