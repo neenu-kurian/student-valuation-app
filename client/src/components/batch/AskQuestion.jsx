@@ -18,7 +18,7 @@ const randomstate={
     evaluation:" ",
     evaluationdetails:" ",
     studentimage:" ",
-    studentname:"No students matching the criteria"
+    studentname:" "
 }
 
 class AskQuestion extends PureComponent {
@@ -40,11 +40,12 @@ class AskQuestion extends PureComponent {
         const total_weight=Number(100);
               
         var random_num = this.getRandomNumber(0, total_weight)
+        console.log(random_num)
         let weight_sum=0;
 
         for (let i = 0; i < filteredcolors.length; i++) {
             weight_sum += weight[i];
-            weight_sum = +weight_sum.toFixed(2);
+            
              
             if (random_num <= weight_sum) {
                 return filteredcolors[i];
@@ -54,7 +55,7 @@ class AskQuestion extends PureComponent {
 
     getStudentRandom(){
         const selectedcolor=this.getRandomColor(weight,filteredcolors)
-        let isEvaluated = true
+        let isEvaluated = false
        const selectedstudent=this.props.student.filter((eachstudent)=>{
            if(eachstudent.evaluation===selectedcolor){
                isEvaluated=true
@@ -67,18 +68,16 @@ class AskQuestion extends PureComponent {
            }
           
        })
-       if(isEvaluated){
+    //    console.log(selectedstudent[0].evaluation)
         if(selectedstudent.length>0) {
             this.props.getRandomStudent(selectedstudent[0])
-            console.log(selectedstudent[0])
-
+         }else{
+             if(!isEvaluated){
+                alert("No evaluation happend yet for the selected student")
+             }else{
+                alert(`No students with color ${selectedcolor} .Please try again`)                
             }
-            else{
-                alert(`No students with color ${selectedcolor} .Please try again`)
-                
-            }
-       }else{
-           alert("No evaluation happend yet for the selected student")
+           
            this.props.getRandomStudent(randomstate)
            // <Link to={`/batches/${this.props.match.params.id}`}/>
        }

@@ -48,6 +48,7 @@ class StudentDetails extends PureComponent {
     this
       .props
       .deleteStudent(id)
+      
 
   }
 
