@@ -1,7 +1,5 @@
 ## student-valuation-app
 
-**Project Title** 
-
 This project aims to create a valuation app for students of a class. 
 
 **Features**
